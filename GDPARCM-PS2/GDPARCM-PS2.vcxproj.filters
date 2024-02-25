@@ -13,10 +13,177 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{10e9ffed-64d6-4b90-b284-a0c389f920c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Inputs">
+      <UniqueIdentifier>{965858ce-0522-46d1-873e-b045a0127c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Scripts">
+      <UniqueIdentifier>{ba184fcc-31c2-48ca-b454-604ff61b37ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{0e68acf0-7e14-4b9c-a75c-bfe4dfe89238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{31e1b600-1142-4121-9d76-311bd8b00000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MultiThreading">
+      <UniqueIdentifier>{985aba54-f433-4429-86cc-6e2b2c28fecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MultiThreading\Tasks">
+      <UniqueIdentifier>{9b3dd93a-111c-45e2-882d-3fafac59b053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ObjectPooling">
+      <UniqueIdentifier>{c3577e54-3ae5-4689-aa2b-78cfbf78c3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{579f446b-0aad-4b8e-950a-ac7ea3ef7b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Inputs">
+      <UniqueIdentifier>{8127eeb8-5872-4084-8ea6-6ee8c50a048f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Scripts">
+      <UniqueIdentifier>{5d2ea14e-a509-4e40-99d7-4a963341df43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{4abc86e6-91c0-4802-af8d-948da1deb327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{a13e6661-e348-44f3-8597-7615587aab54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MultiThreading">
+      <UniqueIdentifier>{8ff205a6-717b-4783-8b83-728096054530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MultiThreading\Tasks">
+      <UniqueIdentifier>{f9e0c71c-bad0-4c19-80ce-38458ec5e7d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ObjectPooling">
+      <UniqueIdentifier>{bb3a53b1-64cf-4e3f-91ec-29a84893b2f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Code\ObjectPooling\APoolable.cpp">
+      <Filter>Source Files\ObjectPooling</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjectPooling\GameObjectPool.cpp">
+      <Filter>Source Files\ObjectPooling</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjectPooling\ObjectPoolManager.cpp">
+      <Filter>Source Files\ObjectPooling</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\AWorkerTask.cpp">
+      <Filter>Source Files\MultiThreading\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\IETThread.cpp">
+      <Filter>Source Files\MultiThreading</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\PoolWorker.cpp">
+      <Filter>Source Files\MultiThreading</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\ThreadPoolScheduler.cpp">
+      <Filter>Source Files\MultiThreading</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\GameObjectManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\TextureManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\AGameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\EmptyGameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\FPSCounter.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\AComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Renderer.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\FPSCounterScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Input\GenericInputController.cpp">
+      <Filter>Source Files\Components\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\ObjectPooling\APoolable.h">
+      <Filter>Header Files\ObjectPooling</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectPooling\GameObjectPool.h">
+      <Filter>Header Files\ObjectPooling</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectPooling\ObjectPoolManager.h">
+      <Filter>Header Files\ObjectPooling</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\AWorkerTask.h">
+      <Filter>Header Files\MultiThreading\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\IETThread.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\IFinishedTaskListener.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\PoolWorker.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\ThreadPoolScheduler.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\EStreamingTypes.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\GameObjectManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\TextureManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\AGameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\EmptyGameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\FPSCounter.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\AComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\EComponentTypes.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Renderer.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\FPSCounterScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Input\GenericInputController.h">
+      <Filter>Header Files\Components\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

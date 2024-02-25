@@ -139,7 +139,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Code\Components\AComponent.cpp" />
+    <ClCompile Include="Code\Components\Input\GenericInputController.cpp" />
+    <ClCompile Include="Code\Components\Renderer.cpp" />
+    <ClCompile Include="Code\Components\Scripts\FPSCounterScript.cpp" />
+    <ClCompile Include="Code\Game.cpp" />
+    <ClCompile Include="Code\GameObjects\AGameObject.cpp" />
+    <ClCompile Include="Code\GameObjects\EmptyGameObject.cpp" />
+    <ClCompile Include="Code\GameObjects\FPSCounter.cpp" />
+    <ClCompile Include="Code\main.cpp" />
+    <ClCompile Include="Code\Managers\GameObjectManager.cpp" />
+    <ClCompile Include="Code\Managers\TextureManager.cpp" />
+    <ClCompile Include="Code\MultiThreading\AWorkerTask.cpp" />
+    <ClCompile Include="Code\MultiThreading\IETThread.cpp" />
+    <ClCompile Include="Code\MultiThreading\PoolWorker.cpp" />
+    <ClCompile Include="Code\MultiThreading\ThreadPoolScheduler.cpp" />
+    <ClCompile Include="Code\ObjectPooling\APoolable.cpp" />
+    <ClCompile Include="Code\ObjectPooling\GameObjectPool.cpp" />
+    <ClCompile Include="Code\ObjectPooling\ObjectPoolManager.cpp" />
+    <ClCompile Include="Code\StringUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\Components\AComponent.h" />
+    <ClInclude Include="Code\Components\EComponentTypes.h" />
+    <ClInclude Include="Code\Components\Input\GenericInputController.h" />
+    <ClInclude Include="Code\Components\Renderer.h" />
+    <ClInclude Include="Code\Components\Scripts\FPSCounterScript.h" />
+    <ClInclude Include="Code\Game.h" />
+    <ClInclude Include="Code\GameObjects\AGameObject.h" />
+    <ClInclude Include="Code\GameObjects\EmptyGameObject.h" />
+    <ClInclude Include="Code\GameObjects\FPSCounter.h" />
+    <ClInclude Include="Code\Managers\EStreamingTypes.h" />
+    <ClInclude Include="Code\Managers\GameObjectManager.h" />
+    <ClInclude Include="Code\Managers\TextureManager.h" />
+    <ClInclude Include="Code\MultiThreading\AWorkerTask.h" />
+    <ClInclude Include="Code\MultiThreading\IETThread.h" />
+    <ClInclude Include="Code\MultiThreading\IFinishedTaskListener.h" />
+    <ClInclude Include="Code\MultiThreading\PoolWorker.h" />
+    <ClInclude Include="Code\MultiThreading\ThreadPoolScheduler.h" />
+    <ClInclude Include="Code\ObjectPooling\APoolable.h" />
+    <ClInclude Include="Code\ObjectPooling\GameObjectPool.h" />
+    <ClInclude Include="Code\ObjectPooling\ObjectPoolManager.h" />
+    <ClInclude Include="Code\StringUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
