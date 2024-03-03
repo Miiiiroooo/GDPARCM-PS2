@@ -6,5 +6,6 @@ enum class EComponentTypes
 	Script = 0,
 	Renderer = 1,
 	Input = 2,
-	Physics = 3
+	Physics = 3,
+	Animation = 4
 };

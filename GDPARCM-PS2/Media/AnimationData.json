@@ -1,0 +1,37 @@
+{
+    "animations" :
+    {
+        "CatIdle" : 
+        {
+            "keyFrames" : 
+            {
+                "CatIdle1" : 0,
+                "CatIdle2" : 0.0666,
+                "CatIdle3" : 0.1332,
+                "CatIdle4" : 0.1998,
+                "CatIdle5" : 0.2664,
+                "CatIdle6" : 0.3333
+            },
+
+            "duration" : 0.4,
+            "isLooping" : true,
+            "isDefault" : true,
+            "scaling" : 4,
+
+            "transitions" : 
+            {
+                "CatRush" : 
+                {
+                    "parameterName" : "isPouncing",
+                    "type" : "Bool",
+                    "condition" : false
+                }
+            }
+        },
+
+        "CatRush" : 
+        {
+            
+        }
+    }
+}

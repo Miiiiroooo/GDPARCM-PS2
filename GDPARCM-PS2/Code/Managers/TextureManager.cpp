@@ -2,6 +2,9 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <rapidjson/document.h>
+#include <rapidjson/filereadstream.h>
+#include <cassert>
 #include "../Game.h"
 #include "../StringUtils.h"
 #include "../MultiThreading/IETThread.h"
@@ -40,6 +43,44 @@ sf::Texture* TextureManager::GetStreamTexture(int index)
 	}
 
 	return streamTexturesList[index];
+}
+
+void TextureManager::LoadAllMainAssets()
+{
+	FILE* inFile = fopen("Media/SpriteSheetData.json", "rb");
+	assert(inFile != NULL);
+
+	char readBuffer[4096];
+	rapidjson::FileReadStream jsonFile(inFile, readBuffer, sizeof(readBuffer));
+	rapidjson::Document doc;
+
+	doc.ParseStream(jsonFile);
+	fclose(inFile);
+
+
+	// initialize new sprites by obtaining the values of the parsed data
+	for (rapidjson::Value::ConstMemberIterator data_itr = doc["data"].MemberBegin(); data_itr != doc["data"].MemberEnd(); ++data_itr)
+	{
+		std::string sourceFileName = data_itr->name.GetString(); 
+
+		for (rapidjson::Value::ConstMemberIterator src_itr = data_itr->value.MemberBegin(); src_itr != data_itr->value.MemberEnd(); ++src_itr)
+		{
+			// init rect for each sprite in sprite sheet
+			int x = src_itr->value["x"].GetInt();
+			int y = src_itr->value["y"].GetInt(); 
+			int width = src_itr->value["w"].GetInt();
+			int height = src_itr->value["h"].GetInt(); 
+			sf::Rect<int> rect(x, y, width, height); 
+
+			// init texture from file with specified rect
+			std::string dir = "Media/SpriteSheets/" + sourceFileName; 
+			sf::Texture* texture = new sf::Texture(); 
+			texture->loadFromFile(dir, rect);  // takes more time to load up 
+			textureMap[src_itr->name.GetString()] = texture; 
+
+			//std::cout << src_itr->name.GetString() << " " << x << " " << y << " " << width << " " << height << "\n";
+		}
+	}
 }
 
 void TextureManager::LoadFromTextFile()

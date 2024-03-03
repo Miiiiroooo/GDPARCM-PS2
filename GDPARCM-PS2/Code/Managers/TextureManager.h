@@ -10,6 +10,8 @@ public:
 	
 	sf::Texture* GetTexture(std::string key);
 	sf::Texture* GetStreamTexture(int index);
+	void LoadAllMainAssets();
+
 	void LoadFromTextFile();
 	void LoadIcon(int iconID);
 

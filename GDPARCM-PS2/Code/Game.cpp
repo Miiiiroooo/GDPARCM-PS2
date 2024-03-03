@@ -4,6 +4,8 @@
 #include "GameObjects/FPSCounter.h"
 #include "GameObjects/EmptyGameObject.h"
 
+#include "GameObjects/Temp.h"
+
 
 const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.0f / FRAME_RATE);
 
@@ -33,17 +35,13 @@ Game::Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GDPARCM", sf:
 void Game::Initialize()
 {
 	// Initialize Managers
-	//TextureManager::GetInstance()->LoadFromTextFile(); 
+	TextureManager::GetInstance()->LoadAllMainAssets(); 
 
-
-	// Initialize Objects in the Scene
-	/*BGObject* bgObject = new BGObject("BGObject"); 
-	GameObjectManager::GetInstance()->AddObject(bgObject); 
-
-	EmptyGameObject* iconDisplay = new EmptyGameObject("IconDisplayHandler"); 
-	IconDisplayScript* iconDisplayScript = new IconDisplayScript("IconDisplayScript"); 
-	iconDisplay->AttachComponent(iconDisplayScript); 
-	GameObjectManager::GetInstance()->AddObject(iconDisplay); */
+	for (int i = 0; i < 6; i++)
+	{
+		Temp* temp = new Temp(i);
+		GameObjectManager::GetInstance()->AddObject(temp); 
+	}
 
 	FPSCounter* fpsCounter = new FPSCounter(); 
 	GameObjectManager::GetInstance()->AddObject(fpsCounter); 

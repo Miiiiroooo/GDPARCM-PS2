@@ -61,6 +61,18 @@
     <Filter Include="Source Files\ObjectPooling">
       <UniqueIdentifier>{bb3a53b1-64cf-4e3f-91ec-29a84893b2f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\Animation">
+      <UniqueIdentifier>{dd246675-43ec-44a3-b901-b76d259c97d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Animation\AnimationElements">
+      <UniqueIdentifier>{2591cd7e-c8ac-464f-8602-8e00ec0bf4a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Animation">
+      <UniqueIdentifier>{baffb19c-ab16-4ba1-8c01-17caa87065fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Animation\AnimationElements">
+      <UniqueIdentifier>{9aa942a9-fcd9-4532-b87f-537a89a89ae8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\ObjectPooling\APoolable.cpp">
@@ -120,6 +132,21 @@
     <ClCompile Include="Code\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\GameObjects\Temp.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\CatObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Animation\AnimationElements\Animation2D.cpp">
+      <Filter>Source Files\Components\Animation\AnimationElements</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Animation\AnimationController.cpp">
+      <Filter>Source Files\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Animation\AnimationElements\AnimationParameter.cpp">
+      <Filter>Source Files\Components\Animation\AnimationElements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\ObjectPooling\APoolable.h">
@@ -176,14 +203,38 @@
     <ClInclude Include="Code\Components\Scripts\FPSCounterScript.h">
       <Filter>Header Files\Components\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Components\Input\GenericInputController.h">
-      <Filter>Header Files\Components\Inputs</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\StringUtils.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\Temp.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\CatObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationElements\Animation2D.h">
+      <Filter>Header Files\Components\Animation\AnimationElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationElements\Animation2DKeyFrames.h">
+      <Filter>Header Files\Components\Animation\AnimationElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationController.h">
+      <Filter>Header Files\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Input\GenericInputController.h">
+      <Filter>Header Files\Components\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationElements\AnimationParameter.h">
+      <Filter>Header Files\Components\Animation\AnimationElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationElements\EAnimationParameterTypes.h">
+      <Filter>Header Files\Components\Animation\AnimationElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Animation\AnimationElements\Transition.h">
+      <Filter>Header Files\Components\Animation\AnimationElements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
