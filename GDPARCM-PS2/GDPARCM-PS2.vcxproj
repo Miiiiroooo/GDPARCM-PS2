@@ -143,9 +143,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp" />
+    <ClCompile Include="Code\Components\Scripts\CheeseSpawnerScript.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationParameter.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationController.cpp" />
     <ClCompile Include="Code\Components\Animation\Animation2D.cpp" />
+    <ClCompile Include="Code\Components\Input\UIButtonInputController.cpp" />
     <ClCompile Include="Code\GameObjects\CatObject.cpp" />
     <ClCompile Include="Code\Components\AComponent.cpp" />
     <ClCompile Include="Code\Components\Input\GenericInputController.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="Code\GameObjects\FPSCounter.cpp" />
     <ClCompile Include="Code\main.cpp" />
     <ClCompile Include="Code\Managers\GameObjectManager.cpp" />
+    <ClCompile Include="Code\Managers\SceneManager.cpp" />
     <ClCompile Include="Code\Managers\TextureManager.cpp" />
     <ClCompile Include="Code\MultiThreading\AWorkerTask.cpp" />
     <ClCompile Include="Code\MultiThreading\IETThread.cpp" />
@@ -165,18 +169,30 @@
     <ClCompile Include="Code\ObjectPooling\APoolable.cpp" />
     <ClCompile Include="Code\ObjectPooling\GameObjectPool.cpp" />
     <ClCompile Include="Code\ObjectPooling\ObjectPoolManager.cpp" />
+    <ClCompile Include="Code\Physics\Collider.cpp" />
+    <ClCompile Include="Code\Physics\PhysicsManager.cpp" />
+    <ClCompile Include="Code\Scenes\AScene.cpp" />
     <ClCompile Include="Code\StringUtils.cpp" />
     <ClCompile Include="Code\GameObjects\Temp.cpp" />
     <ClCompile Include="Code\GameObjects\MouseObject.cpp" />
     <ClCompile Include="Code\Components\Input\MouseController.cpp" />
     <ClCompile Include="Code\Components\Scripts\MouseScript.cpp" />
+    <ClCompile Include="Code\UI\BasicUIObject.cpp" />
+    <ClCompile Include="Code\Managers\FontManager.cpp" />
+    <ClCompile Include="Code\UI\UIButton.cpp" />
+    <ClCompile Include="Code\UI\UIText.cpp" />
+    <ClCompile Include="Code\Screens\InteractiveLoadingScreen.cpp" />
+    <ClCompile Include="Code\Components\Scripts\InteractiveLoadingChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h" />
+    <ClInclude Include="Code\Components\Scripts\CheeseSpawnerScript.h" />
     <ClInclude Include="Code\Components\Animation\AnimationParameterValues.h" />
     <ClInclude Include="Code\Components\Animation\AnimationParameter.h" />
     <ClInclude Include="Code\Components\Animation\AnimationController.h" />
     <ClInclude Include="Code\Components\Animation\Animation2DKeyFrames.h" />
     <ClInclude Include="Code\Components\Animation\Animation2D.h" />
+    <ClInclude Include="Code\Components\Input\UIButtonInputController.h" />
     <ClInclude Include="Code\GameObjects\CatObject.h" />
     <ClInclude Include="Code\Components\AComponent.h" />
     <ClInclude Include="Code\Components\EComponentTypes.h" />
@@ -189,6 +205,7 @@
     <ClInclude Include="Code\GameObjects\FPSCounter.h" />
     <ClInclude Include="Code\Managers\EStreamingTypes.h" />
     <ClInclude Include="Code\Managers\GameObjectManager.h" />
+    <ClInclude Include="Code\Managers\SceneManager.h" />
     <ClInclude Include="Code\Managers\TextureManager.h" />
     <ClInclude Include="Code\MultiThreading\AWorkerTask.h" />
     <ClInclude Include="Code\MultiThreading\IETThread.h" />
@@ -198,6 +215,10 @@
     <ClInclude Include="Code\ObjectPooling\APoolable.h" />
     <ClInclude Include="Code\ObjectPooling\GameObjectPool.h" />
     <ClInclude Include="Code\ObjectPooling\ObjectPoolManager.h" />
+    <ClInclude Include="Code\Physics\Collider.h" />
+    <ClInclude Include="Code\Physics\ICollisionListener.h" />
+    <ClInclude Include="Code\Physics\PhysicsManager.h" />
+    <ClInclude Include="Code\Scenes\AScene.h" />
     <ClInclude Include="Code\StringUtils.h" />
     <ClInclude Include="Code\GameObjects\Temp.h" />
     <ClInclude Include="Code\Components\Animation\EAnimationParameterTypes.h" />
@@ -205,6 +226,18 @@
     <ClInclude Include="Code\GameObjects\MouseObject.h" />
     <ClInclude Include="Code\Components\Input\MouseController.h" />
     <ClInclude Include="Code\Components\Scripts\MouseScript.h" />
+    <ClInclude Include="Code\UI\BasicUIObject.h" />
+    <ClInclude Include="Code\UI\IButtonListener.h" />
+    <ClInclude Include="Code\Managers\FontManager.h" />
+    <ClInclude Include="Code\UI\UIButton.h" />
+    <ClInclude Include="Code\UI\UIText.h" />
+    <ClInclude Include="Code\Screens\InteractiveLoadingScreen.h" />
+    <ClInclude Include="Code\Components\Scripts\InteractiveLoadingChecker.h" />
+    <ClInclude Include="Code\GameObjects\EObjectTags.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\AnimationData.json" />
+    <None Include="Media\SpriteSheetData.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

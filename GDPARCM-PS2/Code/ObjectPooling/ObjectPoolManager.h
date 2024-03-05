@@ -21,7 +21,7 @@ private:
 // Attributes
 public:
 	// pool names
-	//static std::string OBSTACLE_POOL_TAG;
+	static std::string CHEESE_POOL_TAG;
 
 private:
 	static ObjectPoolManager* sharedInstance;

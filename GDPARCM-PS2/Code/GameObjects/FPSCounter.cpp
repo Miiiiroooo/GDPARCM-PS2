@@ -18,14 +18,14 @@ void FPSCounter::Initialize()
 {
 	// Initialize display
 	sf::Font* font = new sf::Font();
-	font->loadFromFile("Media/Sansation.ttf");
+	font->loadFromFile("Media/Fonts/Sansation.ttf");
 
 	counterDisplay = new sf::Text();
 	counterDisplay->setFont(*font);
-	counterDisplay->setPosition(Game::WINDOW_WIDTH - 300.0f, Game::WINDOW_HEIGHT - 75.f);
+	counterDisplay->setPosition(Game::WINDOW_WIDTH - 200.0f, Game::WINDOW_HEIGHT - 50.f);
 	counterDisplay->setOutlineColor(sf::Color(1.0f, 1.0f, 1.0f));
 	counterDisplay->setOutlineThickness(2.5f);
-	counterDisplay->setCharacterSize(60);
+	counterDisplay->setCharacterSize(45);
 
 
 	// Initialize and attach components

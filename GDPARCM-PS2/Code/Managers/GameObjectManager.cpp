@@ -91,4 +91,18 @@ int GameObjectManager::GetActiveObjectsCount()
 {
 	return (int)gameObjectList.size();
 }
+
+void GameObjectManager::DeleteAllObjectsInScene()
+{
+	for (size_t i = 0; i < this->gameObjectList.size(); i++)
+	{
+		delete this->gameObjectList[i];
+	}
+
+	this->gameObjectList.clear();
+	this->gameObjectList.shrink_to_fit();
+	this->gameObjectMap.clear();
+
+
+}
 #pragma endregion

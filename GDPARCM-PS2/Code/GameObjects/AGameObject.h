@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "EObjectTags.h"
 #include "../Components/AComponent.h"
 #include "../Components/Renderer.h"
 
@@ -17,7 +18,11 @@ public:
 	virtual void Update(sf::Time dt);
 	virtual void Draw(sf::RenderWindow* window, sf::RenderStates renderStates); 
 
+	// Object-related methods
 	std::string GetName();
+	EObjectTags GetTag();
+	void ChangeTag(EObjectTags newTag);
+	__declspec(property(get = GetTag, put = ChangeTag)) EObjectTags Tag;
 	bool IsEnabled();
 	void SetEnabled(bool flag);
 	__declspec(property(get = IsEnabled, put = SetEnabled)) bool Enabled;
@@ -52,6 +57,7 @@ private:
 
 protected:
 	std::string name;
+	EObjectTags tag;
 	sf::Sprite* sprite;
 	sf::Texture* texture;
 	sf::Transformable transformable;

@@ -67,6 +67,36 @@
     <Filter Include="Source Files\Components\Animation">
       <UniqueIdentifier>{baffb19c-ab16-4ba1-8c01-17caa87065fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{cb81be35-d75b-4fbf-874b-6b95947bfa46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{be6715a9-ca94-46e7-b753-093df7c7c8a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{5629f999-5ebd-4f2e-a5d7-3f87b41e7539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{24f1935d-aa44-4b36-94c1-ede87f4cf5d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{5501c236-824a-4a68-8fd4-26915860c3be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens">
+      <UniqueIdentifier>{d949c98b-3fe5-4432-9dfd-fe7637c0c0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{58503df3-3385-457c-98a4-ecd83da24391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{abf11b81-9e82-4083-8f22-ae5b58b9a659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ObjectPooling\Objects">
+      <UniqueIdentifier>{6cce9e05-ef71-4e6a-a445-a8bd392c15a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ObjectPooling\Objects">
+      <UniqueIdentifier>{c91ed6aa-8a1f-4381-9cd5-e2723f18b668}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\ObjectPooling\APoolable.cpp">
@@ -149,6 +179,45 @@
     </ClCompile>
     <ClCompile Include="Code\Components\Scripts\MouseScript.cpp">
       <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\UI\BasicUIObject.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\UI\UIButton.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\UI\UIText.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\FontManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Input\UIButtonInputController.cpp">
+      <Filter>Source Files\Components\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Scenes\AScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\SceneManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\InteractiveLoadingChecker.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Screens\InteractiveLoadingScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Physics\Collider.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Physics\PhysicsManager.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\CheeseSpawnerScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp">
+      <Filter>Source Files\ObjectPooling\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,5 +320,57 @@
     <ClInclude Include="Code\Components\Scripts\MouseScript.h">
       <Filter>Header Files\Components\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="Code\UI\UIText.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\UI\UIButton.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\UI\IButtonListener.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\UI\BasicUIObject.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Input\UIButtonInputController.h">
+      <Filter>Header Files\Components\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\FontManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\AScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\SceneManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Screens\InteractiveLoadingScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\InteractiveLoadingChecker.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Physics\ICollisionListener.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Physics\Collider.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Physics\PhysicsManager.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\EObjectTags.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\CheeseSpawnerScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h">
+      <Filter>Header Files\ObjectPooling\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\SpriteSheetData.json" />
+    <None Include="Media\AnimationData.json" />
   </ItemGroup>
 </Project>

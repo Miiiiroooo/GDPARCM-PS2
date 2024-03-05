@@ -6,6 +6,7 @@ AGameObject::AGameObject(std::string name)
 {
 	this->name = name;
 	this->parent = NULL; 
+	this->tag = EObjectTags::Unknown;
 }
 
 AGameObject::~AGameObject()
@@ -108,10 +109,23 @@ void AGameObject::Draw(sf::RenderWindow* window, sf::RenderStates renderStates)
 		}
 	}
 }
+#pragma endregion
 
+
+#pragma region Object-related methods
 std::string AGameObject::GetName()
 {
 	return this->name;
+}
+
+EObjectTags AGameObject::GetTag()
+{
+	return this->tag;
+}
+
+void AGameObject::ChangeTag(EObjectTags newTag)
+{
+	tag = newTag;
 }
 
 bool AGameObject::IsEnabled()

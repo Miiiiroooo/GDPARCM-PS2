@@ -3,6 +3,7 @@
 
 // static declarations of the ObjectPoolHolder Class
 ObjectPoolManager* ObjectPoolManager::sharedInstance = NULL;
+std::string ObjectPoolManager::CHEESE_POOL_TAG = "CheesePool";
 
 ObjectPoolManager* ObjectPoolManager::GetInstance()
 {

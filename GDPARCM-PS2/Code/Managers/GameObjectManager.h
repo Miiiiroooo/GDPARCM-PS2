@@ -21,6 +21,8 @@ public:
 	std::vector<AGameObject*> GetAllObjects(); 
 	int GetActiveObjectsCount();
 
+	void DeleteAllObjectsInScene();
+
 
 private:
 	GameObjectManager() {};

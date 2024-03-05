@@ -15,8 +15,6 @@ public:
 	~AnimationController();
 
 	void InitializeAnimations(std::vector<std::string> animationNamesList);
-	void RetrieveAnimationKeyFrames(rapidjson::Value::ConstMemberIterator& anm_itr, float scaling, std::vector<Animation2DKeyFrames>& keyFramesList); 
-	void RetrieveTransitions(rapidjson::Value::ConstMemberIterator& anm_itr, std::vector<Transition>& transitionsList, std::vector<std::pair<std::string, std::string>>& paramToAnimMap); 
 
 	void SetInt(std::string parameterName, int newValue);
 	void SetFloat(std::string parameterName, float newValue);
@@ -27,6 +25,9 @@ public:
 	void Perform() override; 
 
 private:
+	void RetrieveAnimationKeyFrames(rapidjson::Value::ConstMemberIterator& anm_itr, float scaling, std::vector<Animation2DKeyFrames>& keyFramesList);
+	void RetrieveTransitions(rapidjson::Value::ConstMemberIterator& anm_itr, std::vector<Transition>& transitionsList, std::vector<std::pair<std::string, std::string>>& paramToAnimMap);
+
 	AnimationParameter* CheckForExistingParameter(std::string parameterName);
 	Animation2D* CheckForExistingAnimation(std::string animationName); 
 	EAnimationParameterTypes GetParameterTypeFromString(std::string paramTypeName);
