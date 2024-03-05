@@ -24,6 +24,8 @@ public:
 	static Game* sharedInstance;
 	static const int WINDOW_WIDTH = 1920;
 	static const int WINDOW_HEIGHT = 1080;
+	/*static const int WINDOW_WIDTH = 600;
+	static const int WINDOW_HEIGHT = 600;*/
 	static const int FRAME_RATE = 60;
 	static const sf::Time TIME_PER_FRAME;
 

@@ -35,7 +35,6 @@ void Renderer::SetRenderStates(sf::RenderStates renderStates)
 	this->renderStates = renderStates;
 }
 
-
 void Renderer::Perform()
 {
 	if (this->targetWindow == NULL || this->drawable == NULL)

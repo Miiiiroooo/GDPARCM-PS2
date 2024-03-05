@@ -10,11 +10,16 @@ public:
 
 	std::string GetAnimationStateName();
 
-	void AddKeyFrame(const Animation2DKeyFrames& keyFrame, int keyNum = -1);
+	void AddKeyFrame(const Animation2DKeyFrames& newKeyFrame, int keyNum = -1);
+	void AddKeyFrames(std::vector<Animation2DKeyFrames>& newKeyFramesList, int startingPos = -1);
 	void DeleteKeyFrame(const Animation2DKeyFrames& keyFrame);
 	void DeleteKeyFrame(int keyNum);
 	void UpdateKeyFrame(const Animation2DKeyFrames& newKeyFrame, int keyNum);
 	Animation2DKeyFrames GetKeyFrame(int keyNum);
+
+	void UpdateAnimation(float dt);
+	sf::Sprite* GetCurrentSpriteAnimation();
+	void ResetAnimation();
 
 
 private:
@@ -22,5 +27,8 @@ private:
 	float animationDuration;
 	bool isLooping;
 	std::vector<Animation2DKeyFrames> keyFramesList;
+
+	int currentKeyFrameIndex;
+	float elapsedTime;
 };
 

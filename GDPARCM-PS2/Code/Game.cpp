@@ -5,6 +5,7 @@
 #include "GameObjects/EmptyGameObject.h"
 
 #include "GameObjects/Temp.h"
+#include "GameObjects/MouseObject.h"
 
 
 const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.0f / FRAME_RATE);
@@ -21,9 +22,10 @@ Game* Game::GetInstance()
 	return sharedInstance;
 }
 
-Game::Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GDPARCM", sf::Style::Fullscreen) 
+//Game::Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GDPARCM")
+Game::Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GDPARCM", sf::Style::Fullscreen)  
 {
-	window.setFramerateLimit(FRAME_RATE);
+	window.setFramerateLimit(FRAME_RATE); 
 	//window.setVerticalSyncEnabled(true); 
 	srand((unsigned int)time(NULL));
 
@@ -37,11 +39,14 @@ void Game::Initialize()
 	// Initialize Managers
 	TextureManager::GetInstance()->LoadAllMainAssets(); 
 
-	for (int i = 0; i < 6; i++)
+	/*for (int i = 0; i < 26; i++)
 	{
-		Temp* temp = new Temp(i);
+		Temp* temp = new Temp(i, "CatRush");
 		GameObjectManager::GetInstance()->AddObject(temp); 
-	}
+	}*/
+
+	MouseObject* mouse = new MouseObject();
+	GameObjectManager::GetInstance()->AddObject(mouse);
 
 	FPSCounter* fpsCounter = new FPSCounter(); 
 	GameObjectManager::GetInstance()->AddObject(fpsCounter); 

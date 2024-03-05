@@ -69,7 +69,9 @@ void AGameObject::Update(sf::Time dt)
 {
 	if (this->enabled)
 	{
-		std::vector<AComponent*> componentList = this->GetComponentsOfType(EComponentTypes::Script); 
+		std::vector<AComponent*> componentList = this->GetComponentsOfType(EComponentTypes::Script);
+		std::vector<AComponent*> animList = this->GetComponentsOfType(EComponentTypes::Animation);
+		componentList.insert(componentList.end(), animList.begin(), animList.end());
 
 		for (size_t i = 0; i < componentList.size(); i++)
 		{
@@ -130,6 +132,11 @@ sf::Sprite* AGameObject::GetSprite()
 	return this->sprite;
 }
 
+void AGameObject::UpdateSprite(sf::Sprite* newSprite)
+{
+	this->sprite = newSprite;
+}
+
 sf::Transformable* AGameObject::GetTransformable()
 {
 	return &this->transformable;
@@ -182,7 +189,7 @@ void AGameObject::SetGlobalPosition(float x, float y)
 	}
 
 	sf::Vector2f newPos = sf::Vector2f(x, y) - transform.transformPoint(0, 0);
-	this->transformable.setPosition(newPos); 
+	this->transformable.setPosition(newPos);; 
 }
 
 sf::Vector2f AGameObject::GetLocalPosition()

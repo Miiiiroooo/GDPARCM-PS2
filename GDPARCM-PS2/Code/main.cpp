@@ -3,8 +3,8 @@
 
 int main()
 {
-	Game::GetInstance()->Initialize();
-	Game::GetInstance()->Run();
+	Game::GetInstance()->Initialize(); 
+	Game::GetInstance()->Run(); 
 
 	return 0;
 }

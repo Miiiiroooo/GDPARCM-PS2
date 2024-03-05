@@ -24,14 +24,113 @@
                 {
                     "parameterName" : "isPouncing",
                     "type" : "Bool",
-                    "condition" : false
+                    "condition" : true
                 }
             }
         },
 
-        "CatRush" : 
+        "MouseIdle" : 
         {
-            
+            "keyFrames" : 
+            {
+                "MouseIdle1" : 0,
+                "MouseIdle2" : 0.1998,
+                "MouseIdle3" : 0.3996,
+                "MouseIdle4" : 0.5994,
+                "MouseIdle5" : 0.7992,
+                "MouseIdle6" : 0.9999
+            },
+
+            "duration" : 1.2,
+            "isLooping" : true,
+            "isDefault" : true,
+            "scaling" : 4,
+
+            "transitions" : 
+            {
+                "MouseRun" : 
+                {
+                    "parameterName" : "isRunning",
+                    "type" : "Bool",
+                    "condition" : true
+                },
+
+                "MouseEat" :
+                {
+                    "parameterName" : "isEating",
+                    "type" : "Trigger",
+                    "condition" : null
+                }
+            } 
+        },
+
+        "MouseRun" : 
+        {
+            "keyFrames" : 
+            {
+                "MouseRun1" : 0,
+                "MouseRun2" : 0.0666,
+                "MouseRun3" : 0.1332,
+                "MouseRun4" : 0.1998,
+                "MouseRun5" : 0.2664,
+                "MouseRun6" : 0.3333
+            },
+
+            "duration" : 0.4,
+            "isLooping" : true,
+            "isDefault" : false,
+            "scaling" : 4,
+
+            "transitions" : 
+            {
+                "MouseIdle" : 
+                {
+                    "parameterName" : "isRunning",
+                    "type" : "Bool",
+                    "condition" : false
+                },
+
+                "MouseEat" :
+                {
+                    "parameterName" : "isEating",
+                    "type" : "Trigger",
+                    "condition" : null
+                }
+            } 
+        },
+
+        "MouseEat" : 
+        {
+            "keyFrames" : 
+            {
+                "MouseEat1" : 0,
+                "MouseEat2" : 0.0666,
+                "MouseEat3" : 0.1332,
+                "MouseEat4" : 0.1998,
+                "MouseEat5" : 0.2664
+            },
+
+            "duration" : 0.35,
+            "isLooping" : false,
+            "isDefault" : false,
+            "scaling" : 4,
+
+            "transitions" : 
+            {
+                "MouseIdle" : 
+                {
+                    "parameterName" : "",
+                    "type" : "Unknown",
+                    "condition" : null
+                },
+
+                "MouseRun" :
+                {
+                    "parameterName" : "",
+                    "type" : "Unknown",
+                    "condition" : null
+                }
+            } 
         }
     }
 }

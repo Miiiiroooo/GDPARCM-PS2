@@ -143,9 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Code\Components\Animation\AnimationElements\AnimationParameter.cpp" />
+    <ClCompile Include="Code\Components\Animation\AnimationParameter.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationController.cpp" />
-    <ClCompile Include="Code\Components\Animation\AnimationElements\Animation2D.cpp" />
+    <ClCompile Include="Code\Components\Animation\Animation2D.cpp" />
     <ClCompile Include="Code\GameObjects\CatObject.cpp" />
     <ClCompile Include="Code\Components\AComponent.cpp" />
     <ClCompile Include="Code\Components\Input\GenericInputController.cpp" />
@@ -167,12 +167,16 @@
     <ClCompile Include="Code\ObjectPooling\ObjectPoolManager.cpp" />
     <ClCompile Include="Code\StringUtils.cpp" />
     <ClCompile Include="Code\GameObjects\Temp.cpp" />
+    <ClCompile Include="Code\GameObjects\MouseObject.cpp" />
+    <ClCompile Include="Code\Components\Input\MouseController.cpp" />
+    <ClCompile Include="Code\Components\Scripts\MouseScript.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\Components\Animation\AnimationElements\AnimationParameter.h" />
+    <ClInclude Include="Code\Components\Animation\AnimationParameterValues.h" />
+    <ClInclude Include="Code\Components\Animation\AnimationParameter.h" />
     <ClInclude Include="Code\Components\Animation\AnimationController.h" />
-    <ClInclude Include="Code\Components\Animation\AnimationElements\Animation2DKeyFrames.h" />
-    <ClInclude Include="Code\Components\Animation\AnimationElements\Animation2D.h" />
+    <ClInclude Include="Code\Components\Animation\Animation2DKeyFrames.h" />
+    <ClInclude Include="Code\Components\Animation\Animation2D.h" />
     <ClInclude Include="Code\GameObjects\CatObject.h" />
     <ClInclude Include="Code\Components\AComponent.h" />
     <ClInclude Include="Code\Components\EComponentTypes.h" />
@@ -196,8 +200,11 @@
     <ClInclude Include="Code\ObjectPooling\ObjectPoolManager.h" />
     <ClInclude Include="Code\StringUtils.h" />
     <ClInclude Include="Code\GameObjects\Temp.h" />
-    <ClInclude Include="Code\Components\Animation\AnimationElements\EAnimationParameterTypes.h" />
-    <ClInclude Include="Code\Components\Animation\AnimationElements\Transition.h" />
+    <ClInclude Include="Code\Components\Animation\EAnimationParameterTypes.h" />
+    <ClInclude Include="Code\Components\Animation\Transition.h" />
+    <ClInclude Include="Code\GameObjects\MouseObject.h" />
+    <ClInclude Include="Code\Components\Input\MouseController.h" />
+    <ClInclude Include="Code\Components\Scripts\MouseScript.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -77,8 +77,6 @@ void TextureManager::LoadAllMainAssets()
 			sf::Texture* texture = new sf::Texture(); 
 			texture->loadFromFile(dir, rect);  // takes more time to load up 
 			textureMap[src_itr->name.GetString()] = texture; 
-
-			//std::cout << src_itr->name.GetString() << " " << x << " " << y << " " << width << " " << height << "\n";
 		}
 	}
 }

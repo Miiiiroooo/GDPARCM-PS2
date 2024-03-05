@@ -24,6 +24,7 @@ public:
 
 	// SFML-related methods
 	sf::Sprite* GetSprite();
+	void UpdateSprite(sf::Sprite* newSprite);
 	sf::Transformable* GetTransformable();
 	sf::Transform GetGlobalTransform();
 	void SetLocalPosition(float x, float y);
