@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "EObjectTags.h"
+#include "../Enums/EObjectTags.h"
 #include "../Components/AComponent.h"
 #include "../Components/Renderer.h"
 
@@ -67,6 +67,6 @@ protected:
 	std::vector<AComponent*> componentList; 
 
 private:
-	bool enabled = true;
+	bool objectEnabled = true;
 };
 

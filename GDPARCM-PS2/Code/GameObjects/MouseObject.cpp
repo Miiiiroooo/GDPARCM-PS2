@@ -1,12 +1,13 @@
 #include "MouseObject.h"
+#include "../Game.h"
+#include "../Components/Renderer.h"
 #include "../Components/Animation/AnimationController.h"
 #include "../Components/Input/MouseController.h"
+#include "../Components/Scripts/HitBehaviorScript.h"
 #include "../Components/Scripts/MouseScript.h"
-#include "../Components/Renderer.h"
-#include "../Physics/Collider.h"
-#include "../Game.h"
+#include "../Physics/PhysicsManager.h"
 
-MouseObject::MouseObject() : AGameObject("MousePlayer")
+MouseObject::MouseObject(sf::FloatRect area) : AGameObject("MousePlayer"), playableArea(area)
 {
 
 }
@@ -31,29 +32,13 @@ void MouseObject::Initialize()
 	MouseController* inputController = new MouseController(); 
 	this->AttachComponent(inputController); 
 
-	MouseScript* script = new MouseScript(this, inputController, animController);  
-	this->AttachComponent(script);   
-
 	Collider* mouseCollider = new Collider("MouseCollider");
-	//mouseCollider->SetLocalBounds(); // figure out way to access sprite
-	mouseCollider->SetCollisionListener(this);
 	this->AttachComponent(mouseCollider);
-}
+	PhysicsManager::GetInstance()->TrackObject(mouseCollider);
 
-void MouseObject::OnCollisionEnter(AGameObject* collidedObj)
-{
-	switch (collidedObj->Tag)
-	{
-		case EObjectTags::Cheese:
-			break;
-		case EObjectTags::Enemy:
-			break;
-		default:
-			break;
-	}
-}
+	HitBehaviorScript* hitScript = new HitBehaviorScript("MouseHitScript", renderer, mouseCollider);
+	this->AttachComponent(hitScript);
 
-void MouseObject::OnCollisionExit(AGameObject* collidedObj)
-{
-
+	MouseScript* script = new MouseScript(playableArea, inputController, animController, mouseCollider, hitScript);
+	this->AttachComponent(script);   
 }

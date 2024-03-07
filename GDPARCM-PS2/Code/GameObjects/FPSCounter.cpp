@@ -22,10 +22,10 @@ void FPSCounter::Initialize()
 
 	counterDisplay = new sf::Text();
 	counterDisplay->setFont(*font);
-	counterDisplay->setPosition(Game::WINDOW_WIDTH - 200.0f, Game::WINDOW_HEIGHT - 50.f);
+	counterDisplay->setPosition(Game::WINDOW_WIDTH - 350.0f, Game::WINDOW_HEIGHT - 80.f);
 	counterDisplay->setOutlineColor(sf::Color(1.0f, 1.0f, 1.0f));
 	counterDisplay->setOutlineThickness(2.5f);
-	counterDisplay->setCharacterSize(45);
+	counterDisplay->setCharacterSize(75);
 
 
 	// Initialize and attach components

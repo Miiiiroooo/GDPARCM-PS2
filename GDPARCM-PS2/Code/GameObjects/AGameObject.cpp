@@ -48,15 +48,19 @@ AGameObject::~AGameObject()
 #pragma region Game-related methods
 void AGameObject::ProcessInputs(sf::Event event)
 {
-	if (this->enabled)
+	if (this->objectEnabled)
 	{
 		std::vector<AComponent*> componentList = this->GetComponentsOfType(EComponentTypes::Input);
 
 		for (size_t i = 0; i < componentList.size(); i++)
 		{
 			GenericInputController* inputController = (GenericInputController*)componentList[i];
-			inputController->AssignEvent(event); 
-			inputController->Perform(); 
+
+			if (inputController->Enabled)
+			{
+				inputController->AssignEvent(event); 
+				inputController->Perform(); 
+			}
 		}
 
 		for (size_t i = 0; i < this->childList.size(); i++)
@@ -68,7 +72,7 @@ void AGameObject::ProcessInputs(sf::Event event)
 
 void AGameObject::Update(sf::Time dt) 
 {
-	if (this->enabled)
+	if (this->objectEnabled)
 	{
 		std::vector<AComponent*> componentList = this->GetComponentsOfType(EComponentTypes::Script);
 		std::vector<AComponent*> animList = this->GetComponentsOfType(EComponentTypes::Animation);
@@ -76,8 +80,11 @@ void AGameObject::Update(sf::Time dt)
 
 		for (size_t i = 0; i < componentList.size(); i++)
 		{
-			componentList[i]->SetDeltaTime(dt);  
-			componentList[i]->Perform(); 
+			if (componentList[i]->Enabled)
+			{
+				componentList[i]->SetDeltaTime(dt);
+				componentList[i]->Perform();
+			}
 		}
 
 
@@ -90,7 +97,7 @@ void AGameObject::Update(sf::Time dt)
 
 void AGameObject::Draw(sf::RenderWindow* window, sf::RenderStates renderStates)
 {
-	if (this->enabled) 
+	if (this->objectEnabled) 
 	{
 		std::vector<AComponent*> rendererList = this->GetComponentsOfType(EComponentTypes::Renderer); 
 		renderStates.transform *= this->transformable.getTransform();
@@ -98,9 +105,13 @@ void AGameObject::Draw(sf::RenderWindow* window, sf::RenderStates renderStates)
 		for (size_t i = 0; i < rendererList.size(); i++) 
 		{
 			Renderer* renderer = (Renderer*)rendererList[i];  
-			renderer->AssignTargetWindow(window); 
-			renderer->SetRenderStates(renderStates); 
-			renderer->Perform();
+
+			if (renderer->Enabled)
+			{
+				renderer->AssignTargetWindow(window); 
+				renderer->SetRenderStates(renderStates); 
+				renderer->Perform(); 
+			}
 		}
 
 		for (size_t i = 0; i < childList.size(); i++) 
@@ -130,12 +141,12 @@ void AGameObject::ChangeTag(EObjectTags newTag)
 
 bool AGameObject::IsEnabled()
 {
-	return enabled;
+	return objectEnabled;
 }
 
 void AGameObject::SetEnabled(bool flag)
 {
-	enabled = flag;
+	objectEnabled = flag;
 }
 #pragma endregion
 
@@ -158,21 +169,21 @@ sf::Transformable* AGameObject::GetTransformable()
 
 sf::Transform AGameObject::GetGlobalTransform()
 {
-	AGameObject* parentObj = this; 
-	std::vector<AGameObject*> parentList; 
+	AGameObject* parentObj = this;  
+	std::vector<AGameObject*> parentList;  
 
-	while (parentObj != NULL) 
+	while (parentObj != NULL)  
 	{
-		parentList.push_back(parentObj); 
-		parentObj = parentObj->GetParent();  
+		parentList.push_back(parentObj);  
+		parentObj = parentObj->GetParent();   
 	}
 
-	sf::Transform transform = sf::Transform::Identity; 
-	int startIdx = parentList.size() - 1; 
+	sf::Transform transform = sf::Transform::Identity;  
+	int startIdx = parentList.size() - 1;  
 
-	for (int i = startIdx; i >= 0; i--) 
+	for (int i = startIdx; i >= 0; i--)  
 	{
-		transform = transform * parentList[i]->GetTransformable()->getTransform(); 
+		transform = transform * parentList[i]->GetTransformable()->getTransform();  
 	}
 
 	return transform;
@@ -185,25 +196,25 @@ void AGameObject::SetLocalPosition(float x, float y)
 
 void AGameObject::SetGlobalPosition(float x, float y)
 {
-	AGameObject* parentObj = this;
-	std::vector<AGameObject*> parentList;
+	AGameObject* parentObj = parent; 
+	std::vector<AGameObject*> parentList; 
 
-	while (parentObj != NULL)
+	while (parentObj != NULL) 
 	{
-		parentList.push_back(parentObj);
-		parentObj = parentObj->GetParent();
+		parentList.push_back(parentObj); 
+		parentObj = parentObj->GetParent(); 
 	}
 
-	sf::Transform transform = sf::Transform::Identity;
-	int startIdx = parentList.size() - 1;
+	sf::Transform transform = sf::Transform::Identity; 
+	int startIdx = parentList.size() - 1; 
 
-	for (int i = startIdx; i >= 0; i--)
+	for (int i = startIdx; i >= 0; i--) 
 	{
-		transform = transform * parentList[i]->GetTransformable()->getTransform();
+		transform = transform * parentList[i]->GetTransformable()->getTransform(); 
 	}
 
 	sf::Vector2f newPos = sf::Vector2f(x, y) - transform.transformPoint(0, 0);
-	this->transformable.setPosition(newPos);; 
+	this->transformable.setPosition(newPos);
 }
 
 sf::Vector2f AGameObject::GetLocalPosition()
@@ -213,7 +224,7 @@ sf::Vector2f AGameObject::GetLocalPosition()
 
 sf::Vector2f AGameObject::GetGlobalPosition()
 {
-	return GetGlobalTransform().transformPoint(0,0);
+	return GetGlobalTransform().transformPoint(0, 0);
 }
 #pragma endregion
 

@@ -13,7 +13,15 @@ AnimationParameter::~AnimationParameter()
 
 }
 
-bool AnimationParameter::CheckForTransition(AnimationParameterValues condition)
+void AnimationParameter::ResetCurrentValues()
+{
+	currentValues.intValue = 0;
+	currentValues.floatValue = 0.f;
+	currentValues.boolValue = false;
+	currentValues.isTriggered = false;
+}
+
+bool AnimationParameter::CheckForTransition(AnimationParameterValues condition, bool isAtTheEndOfFrame)
 {
 	bool willTransition = false;
 
@@ -24,7 +32,8 @@ bool AnimationParameter::CheckForTransition(AnimationParameterValues condition)
 		(type == Float_Greater && currentValues.floatValue > condition.floatValue) ||
 		(type == Float_Lesser && currentValues.floatValue < condition.floatValue) ||
 		(type == Bool && currentValues.boolValue == condition.boolValue) ||
-		(type == Trigger && currentValues.isTriggered))
+		(type == Trigger && currentValues.isTriggered) || 
+		(type == Trigger_Finished && isAtTheEndOfFrame))
 	{
 		willTransition = true;
 	}

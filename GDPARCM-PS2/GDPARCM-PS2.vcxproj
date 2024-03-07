@@ -74,7 +74,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\SFML-2.5.1\include;$(SolutionDir)\Dependencies\rapidjson\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -92,7 +92,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\SFML-2.5.1\include;$(SolutionDir)\Dependencies\rapidjson\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -110,7 +110,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\SFML-2.5.1\include;$(SolutionDir)\Dependencies\rapidjson\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -128,7 +128,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\SFML-2.5.1\include;$(SolutionDir)\Dependencies\rapidjson\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -143,13 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Code\Components\Scripts\CatScript.cpp" />
+    <ClCompile Include="Code\Components\Scripts\CatSpawnerScript.cpp" />
+    <ClCompile Include="Code\Managers\SFXManager.cpp" />
     <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp" />
     <ClCompile Include="Code\Components\Scripts\CheeseSpawnerScript.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationParameter.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationController.cpp" />
     <ClCompile Include="Code\Components\Animation\Animation2D.cpp" />
     <ClCompile Include="Code\Components\Input\UIButtonInputController.cpp" />
-    <ClCompile Include="Code\GameObjects\CatObject.cpp" />
+    <ClCompile Include="Code\ObjectPooling\Objects\CatObject.cpp" />
     <ClCompile Include="Code\Components\AComponent.cpp" />
     <ClCompile Include="Code\Components\Input\GenericInputController.cpp" />
     <ClCompile Include="Code\Components\Renderer.cpp" />
@@ -183,8 +186,15 @@
     <ClCompile Include="Code\UI\UIText.cpp" />
     <ClCompile Include="Code\Screens\InteractiveLoadingScreen.cpp" />
     <ClCompile Include="Code\Components\Scripts\InteractiveLoadingChecker.cpp" />
+    <ClCompile Include="Code\GameObjects\PlayableArea.cpp" />
+    <ClCompile Include="Code\Managers\ScoreManager.cpp" />
+    <ClCompile Include="Code\Components\Scripts\HitBehaviorScript.cpp" />
+    <ClCompile Include="Code\UI\LoadingScreenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Components\Scripts\CatScript.h" />
+    <ClInclude Include="Code\Components\Scripts\CatSpawnerScript.h" />
+    <ClInclude Include="Code\Managers\SFXManager.h" />
     <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h" />
     <ClInclude Include="Code\Components\Scripts\CheeseSpawnerScript.h" />
     <ClInclude Include="Code\Components\Animation\AnimationParameterValues.h" />
@@ -193,9 +203,9 @@
     <ClInclude Include="Code\Components\Animation\Animation2DKeyFrames.h" />
     <ClInclude Include="Code\Components\Animation\Animation2D.h" />
     <ClInclude Include="Code\Components\Input\UIButtonInputController.h" />
-    <ClInclude Include="Code\GameObjects\CatObject.h" />
+    <ClInclude Include="Code\ObjectPooling\Objects\CatObject.h" />
     <ClInclude Include="Code\Components\AComponent.h" />
-    <ClInclude Include="Code\Components\EComponentTypes.h" />
+    <ClInclude Include="Code\Enums\EComponentTypes.h" />
     <ClInclude Include="Code\Components\Input\GenericInputController.h" />
     <ClInclude Include="Code\Components\Renderer.h" />
     <ClInclude Include="Code\Components\Scripts\FPSCounterScript.h" />
@@ -203,7 +213,7 @@
     <ClInclude Include="Code\GameObjects\AGameObject.h" />
     <ClInclude Include="Code\GameObjects\EmptyGameObject.h" />
     <ClInclude Include="Code\GameObjects\FPSCounter.h" />
-    <ClInclude Include="Code\Managers\EStreamingTypes.h" />
+    <ClInclude Include="Code\Enums\EStreamingTypes.h" />
     <ClInclude Include="Code\Managers\GameObjectManager.h" />
     <ClInclude Include="Code\Managers\SceneManager.h" />
     <ClInclude Include="Code\Managers\TextureManager.h" />
@@ -221,7 +231,7 @@
     <ClInclude Include="Code\Scenes\AScene.h" />
     <ClInclude Include="Code\StringUtils.h" />
     <ClInclude Include="Code\GameObjects\Temp.h" />
-    <ClInclude Include="Code\Components\Animation\EAnimationParameterTypes.h" />
+    <ClInclude Include="Code\Enums\EAnimationParameterTypes.h" />
     <ClInclude Include="Code\Components\Animation\Transition.h" />
     <ClInclude Include="Code\GameObjects\MouseObject.h" />
     <ClInclude Include="Code\Components\Input\MouseController.h" />
@@ -233,7 +243,14 @@
     <ClInclude Include="Code\UI\UIText.h" />
     <ClInclude Include="Code\Screens\InteractiveLoadingScreen.h" />
     <ClInclude Include="Code\Components\Scripts\InteractiveLoadingChecker.h" />
-    <ClInclude Include="Code\GameObjects\EObjectTags.h" />
+    <ClInclude Include="Code\Enums\EObjectTags.h" />
+    <ClInclude Include="Code\GameObjects\PlayableArea.h" />
+    <ClInclude Include="Code\Enums\ECatStates.h" />
+    <ClInclude Include="Code\Managers\ScoreManager.h" />
+    <ClInclude Include="Code\Components\Scripts\HitBehaviorScript.h" />
+    <ClInclude Include="Code\UI\LoadingScreenUI.h" />
+    <ClInclude Include="Code\Managers\IScoreListener.h" />
+    <ClInclude Include="Code\Enums\EOriginAlignment.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Media\AnimationData.json" />

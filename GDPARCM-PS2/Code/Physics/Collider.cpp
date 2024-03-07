@@ -45,6 +45,11 @@ bool Collider::HasAlreadyCollidedWith(AGameObject* collidedObj)
 	return (objPos != collidedObjects.end());
 }
 
+std::vector<AGameObject*> Collider::GetCollidedObjsList()
+{
+	return collidedObjects;
+}
+
 sf::FloatRect Collider::GetGlobalBounds()
 {
 	return this->GetOwner()->GetGlobalTransform().transformRect(this->localBounds);
@@ -57,24 +62,25 @@ void Collider::SetLocalBounds(sf::FloatRect localBounds)
 
 void Collider::CollisionEnter(AGameObject* collidedObj)
 {
+	collidedObjects.push_back(collidedObj);
+
 	if (this->listener != NULL)
 	{
 		this->listener->OnCollisionEnter(collidedObj);
-		collidedObjects.push_back(collidedObj);
 	}
 }
 
 void Collider::CollisionExit(AGameObject* collidedObj)
 {
+	auto objPos = std::find(collidedObjects.begin(), collidedObjects.end(), collidedObj); 
+	if (objPos != collidedObjects.end()) 
+	{
+		collidedObjects.erase(objPos); 
+	}
+
 	if (this->listener != NULL)
 	{
 		this->listener->OnCollisionExit(collidedObj); 
-
-		auto objPos = std::find(collidedObjects.begin(), collidedObjects.end(), collidedObj);
-		if (objPos != collidedObjects.end())
-		{
-			collidedObjects.erase(objPos);
-		}
 	}
 }
 

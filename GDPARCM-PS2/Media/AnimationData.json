@@ -23,8 +23,63 @@
                 "CatRush" : 
                 {
                     "parameterName" : "isPouncing",
-                    "type" : "Bool",
-                    "condition" : true
+                    "type" : "Trigger",
+                    "condition" : null
+                }
+            }
+        },
+
+        "CatRush" : 
+        {
+            "keyFrames" : 
+            {
+                "CatRush1" : 0,
+                "CatRush2" : 0.0666,
+                "CatRush3" : 0.1332,
+                "CatRush4" : 0.1998,
+                "CatRush5" : 0.2664,
+                "CatRush6" : 0.3333,
+                "CatRush7" : 0.3999,
+                "CatRush8" : 0.4665,
+                "CatRush9" : 0.5331,
+                "CatRush10" : 0.5997,
+                "CatRush11" : 0.6663,
+                "CatRush12" : 0.7329,
+                "CatRush13" : 0.7995,
+                "CatRush14" : 0.8661,
+                "CatRush15" : 0.9327,
+                "CatRush16" : 0.9993,
+                "CatRush17" : 1.0659,
+                "CatRush18" : 1.1325,
+                "CatRush19" : 1.1991,
+                "CatRush20" : 1.2657,
+                "CatRush21" : 1.3323,
+                "CatRush22" : 1.3989,
+                "CatRush23" : 1.4655,
+                "CatRush24" : 1.5321,
+                "CatRush25" : 1.5987,
+                "CatRush26" : 1.6653
+            },
+
+            "duration" : 1.8,
+            "isLooping" : false,
+            "isDefault" : false,
+            "scaling" : 4,
+
+            "transitions" : 
+            {
+                "CatRush" : 
+                {
+                    "parameterName" : "isPouncing",
+                    "type" : "Trigger",
+                    "condition" : null
+                },
+
+                "CatIdle" : 
+                {
+                    "parameterName" : "trigger_end",
+                    "type" : "Trigger_Finished",
+                    "condition" : null
                 }
             }
         },
@@ -41,7 +96,7 @@
                 "MouseIdle6" : 0.9999
             },
 
-            "duration" : 1.2,
+            "duration" : 1.1988,
             "isLooping" : true,
             "isDefault" : true,
             "scaling" : 4,
@@ -117,17 +172,17 @@
 
             "transitions" : 
             {
-                "MouseIdle" : 
+                "MouseEat" :
                 {
-                    "parameterName" : "",
-                    "type" : "Unknown",
+                    "parameterName" : "isEating",
+                    "type" : "Trigger",
                     "condition" : null
                 },
 
-                "MouseRun" :
+                "MouseIdle" : 
                 {
-                    "parameterName" : "",
-                    "type" : "Unknown",
+                    "parameterName" : "trigger_end",
+                    "type" : "Trigger_Finished",
                     "condition" : null
                 }
             } 

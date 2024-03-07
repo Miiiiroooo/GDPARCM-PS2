@@ -19,6 +19,7 @@ public:
 
 	void UpdateAnimation(float dt);
 	sf::Sprite* GetCurrentSpriteAnimation();
+	bool IsAtTheEndOfFrame();
 	void ResetAnimation();
 
 
@@ -30,5 +31,6 @@ private:
 
 	int currentKeyFrameIndex;
 	float elapsedTime;
+	bool atTheEndOfFrame;
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include "EStreamingTypes.h"
+#include "../Enums/EStreamingTypes.h"
 
 class TextureManager : sf::NonCopyable
 {

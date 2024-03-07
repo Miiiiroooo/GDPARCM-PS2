@@ -6,6 +6,10 @@
 UIText::UIText(std::string name) : AGameObject(name)
 {
 	this->text = new sf::Text();
+	this->SetSize(40);
+	this->SetText("<Using placeholder!>");
+
+	alignment = EOriginAlignment::Middle_Left;
 }
 
 UIText::~UIText()
@@ -22,8 +26,7 @@ void UIText::Initialize()
 	text->setFillColor(sf::Color::White);
 	text->setOutlineColor(sf::Color::Black);
 	text->setOutlineThickness(4.0f);
-	this->SetSize(40);
-	this->SetText("<Using placeholder!>");
+	text->setOrigin(CalculateOrigin());
 
 	Renderer* renderer = new Renderer("UIText");
 	renderer->AssignDrawable(text);
@@ -33,23 +36,73 @@ void UIText::Initialize()
 void UIText::SetText(std::string text)
 {
 	this->text->setString(text);
-	sf::FloatRect bounds = this->text->getLocalBounds();
-
-	// Align center, you can put other alignments here
-	this->text->setOrigin(bounds.width / 2, bounds.height / 2);
 }
 
 sf::Text* UIText::GetText()
 {
-	return this->text;
+	return text;
 }
 
 std::string UIText::GetTextString()
 {
-	return this->text->getString();
+	return text->getString();
 }
 
 void UIText::SetSize(unsigned int size)
 {
-	this->text->setCharacterSize(size);
+	text->setCharacterSize(size);
+}
+
+void UIText::SetFont(sf::Font* font)
+{
+	text->setFont(*font);
+}
+
+void UIText::SetColor(sf::Color color)
+{
+	text->setFillColor(color);
+}
+
+void UIText::SetOriginAlignment(EOriginAlignment alignment)
+{
+	this->alignment = alignment;
+	text->setOrigin(CalculateOrigin());
+}
+
+sf::Vector2f UIText::CalculateOrigin()
+{
+	sf::FloatRect bounds = text->getLocalBounds();
+
+	switch (alignment)
+	{
+		case EOriginAlignment::Top_Left:
+			return sf::Vector2f(bounds.left, bounds.top);
+
+		case EOriginAlignment::Top_Middle:
+			return sf::Vector2f(bounds.width / 2, bounds.top);
+
+		case EOriginAlignment::Top_Right:
+			return sf::Vector2f(bounds.left + bounds.width, bounds.top);
+
+		case EOriginAlignment::Middle_Left:
+			return sf::Vector2f(bounds.left, bounds.height / 2);
+
+		case EOriginAlignment::Middle:
+			return sf::Vector2f(bounds.width / 2, bounds.height / 2);
+
+		case EOriginAlignment::Middle_Right:
+			return sf::Vector2f(bounds.left + bounds.width, bounds.height / 2);
+
+		case EOriginAlignment::Bottom_Left:
+			return sf::Vector2f(bounds.left, bounds.top + bounds.height); 
+
+		case EOriginAlignment::Bottom_Middle:
+			return sf::Vector2f(bounds.width / 2, bounds.top + bounds.height); 
+
+		case EOriginAlignment::Bottom_Right:
+			return sf::Vector2f(bounds.left + bounds.width, bounds.top + bounds.height); 
+
+		default:
+			return sf::Vector2f(bounds.left, bounds.top);
+	}
 }

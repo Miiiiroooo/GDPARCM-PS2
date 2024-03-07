@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "EComponentTypes.h"
+#include "../Enums/EComponentTypes.h"
 
 class AGameObject;
 
@@ -17,6 +17,9 @@ public:
 	AGameObject* GetOwner();
 	EComponentTypes GetType();
 	std::string GetName();
+	bool IsEnabled();
+	void SetEnabled(bool flag);
+	__declspec(property(get = IsEnabled, put = SetEnabled)) bool Enabled;
 
 	void SetDeltaTime(sf::Time deltaTime);
 	virtual void Perform() = 0;
@@ -28,5 +31,6 @@ protected:
 	EComponentTypes type;
 	std::string name;
 	sf::Time deltaTime;
+	bool componentEnabled;
 };
 

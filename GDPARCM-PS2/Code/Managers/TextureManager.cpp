@@ -79,6 +79,8 @@ void TextureManager::LoadAllMainAssets()
 			textureMap[src_itr->name.GetString()] = texture; 
 		}
 	}
+
+	LoadTexture("Cheese", "Media/Sprites/Cheese.png", false);
 }
 
 void TextureManager::LoadFromTextFile()

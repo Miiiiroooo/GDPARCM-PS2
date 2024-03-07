@@ -3,9 +3,10 @@
 #include "../../Managers/SceneManager.h"
 #include "../../Managers/GameObjectManager.h"
 
-InteractiveLoadingChecker::InteractiveLoadingChecker() : AComponent("InteractiveLoadingChecker", EComponentTypes::Script)
+InteractiveLoadingChecker::InteractiveLoadingChecker(LoadingScreenUI* loadingScreenUI) 
+	: AComponent("InteractiveLoadingChecker", EComponentTypes::Script), loadingScreenUI(loadingScreenUI)
 {
-
+	elapsedTime = 0.f;
 }
 
 InteractiveLoadingChecker::~InteractiveLoadingChecker()
@@ -15,14 +16,21 @@ InteractiveLoadingChecker::~InteractiveLoadingChecker()
 
 void InteractiveLoadingChecker::Perform()
 {
-	AScene* sceneBeingLoaded = SceneManager::GetInstance()->GetActiveScene();
-
-	if (sceneBeingLoaded->IsAlreadyLoaded())
+	elapsedTime += deltaTime.asSeconds();
+	if (elapsedTime > 1.f)
 	{
-		AGameObject* parent = this->GetOwner();
-
-		GameObjectManager::GetInstance()->DeleteObjectByName(parent->GetName());
-
-		// transition logic
+		elapsedTime = 0.f;
+		loadingScreenUI->UpdateLoadingText();
 	}
+
+	//AScene* sceneBeingLoaded = SceneManager::GetInstance()->GetActiveScene();
+
+	//if (sceneBeingLoaded->IsAlreadyLoaded())
+	//{
+	//	AGameObject* parent = this->GetOwner();
+
+	//	GameObjectManager::GetInstance()->DeleteObjectByName(parent->GetName());
+
+	//	// transition logic
+	//}
 }

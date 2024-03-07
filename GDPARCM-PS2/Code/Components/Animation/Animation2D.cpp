@@ -5,6 +5,10 @@
 Animation2D::Animation2D(const std::string& animationStateName, float animationDuration, bool isLooping, const Animation2DKeyFrames& startingFrame) : 
 	animationStateName(animationStateName), animationDuration(animationDuration), isLooping(isLooping)
 {
+	currentKeyFrameIndex = 0;
+	elapsedTime = 0.f;
+	atTheEndOfFrame = false;
+
 	keyFramesList.push_back(startingFrame);
 }
 
@@ -18,6 +22,7 @@ std::string Animation2D::GetAnimationStateName()
 	return animationStateName;
 }
 
+#pragma region Key Frames
 void Animation2D::AddKeyFrame(const Animation2DKeyFrames& newKeyFrame, int keyNum)
 {
 	if (newKeyFrame.sprite == NULL)
@@ -111,18 +116,29 @@ Animation2DKeyFrames Animation2D::GetKeyFrame(int keyNum)
 
 	return keyFramesList[keyNum]; 
 }
+#pragma endregion
 
 void Animation2D::UpdateAnimation(float dt)
 {
 	elapsedTime += dt;
 
-	if (elapsedTime > keyFramesList[currentKeyFrameIndex].keyTime && currentKeyFrameIndex < keyFramesList.size() - 1)
+	if (currentKeyFrameIndex < keyFramesList.size() - 1)
 	{
-		currentKeyFrameIndex++;
+		Animation2DKeyFrames nextKeyFrame = keyFramesList[currentKeyFrameIndex + 1];
+
+		if (elapsedTime > nextKeyFrame.keyTime)
+		{
+			currentKeyFrameIndex++;
+		}
 	}
-	else if (elapsedTime > keyFramesList[currentKeyFrameIndex].keyTime && currentKeyFrameIndex == keyFramesList.size() - 1)
+	else if (currentKeyFrameIndex == keyFramesList.size() - 1)
 	{
-		ResetAnimation();
+		atTheEndOfFrame = true;
+
+		if (isLooping && elapsedTime > animationDuration)
+		{
+			ResetAnimation();
+		}
 	}
 }
 
@@ -131,8 +147,14 @@ sf::Sprite* Animation2D::GetCurrentSpriteAnimation()
 	return keyFramesList[currentKeyFrameIndex].sprite;
 }
 
+bool Animation2D::IsAtTheEndOfFrame()
+{
+	return atTheEndOfFrame;
+}
+
 void Animation2D::ResetAnimation()
 {
 	elapsedTime = 0.f;
 	currentKeyFrameIndex = 0;
+	atTheEndOfFrame = false;
 }

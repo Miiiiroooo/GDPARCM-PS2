@@ -16,6 +16,7 @@ public:
 	void SetAlreadyCollided(bool flag);
 	bool HasAlreadyCollided();
 	bool HasAlreadyCollidedWith(AGameObject* collidedObj);
+	std::vector<AGameObject*> GetCollidedObjsList();
 
 	sf::FloatRect GetGlobalBounds();
 	void SetLocalBounds(sf::FloatRect localBounds);

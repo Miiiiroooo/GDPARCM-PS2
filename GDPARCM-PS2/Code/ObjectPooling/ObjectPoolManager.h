@@ -22,6 +22,7 @@ private:
 public:
 	// pool names
 	static std::string CHEESE_POOL_TAG;
+	static std::string CAT_POOL_TAG;
 
 private:
 	static ObjectPoolManager* sharedInstance;

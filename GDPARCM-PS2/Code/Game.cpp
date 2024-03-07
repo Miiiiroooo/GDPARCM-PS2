@@ -2,12 +2,13 @@
 #include "Managers/GameObjectManager.h"
 #include "Managers/TextureManager.h"
 #include "Managers/FontManager.h"
+#include "Managers/ScoreManager.h"
+#include "Managers/SFXManager.h"
 #include "Managers/SceneManager.h"
 #include "Physics/PhysicsManager.h"
-#include "GameObjects/FPSCounter.h"
-#include "GameObjects/EmptyGameObject.h"
 
-#include "GameObjects/MouseObject.h"
+#include "Screens/InteractiveLoadingScreen.h"
+#include "GameObjects/Temp.h"
 
 
 const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.0f / FRAME_RATE);
@@ -41,16 +42,14 @@ void Game::Initialize()
 	// Initialize Managers
 	TextureManager::GetInstance()->LoadAllMainAssets();
 	FontManager::GetInstance()->LoadAll();
+	ScoreManager::GetInstance()->Initialize();
+	SFXManager::GetInstance()->LoadAll("Media/AudioFile.txt");
 
 	//SceneManager::getInstance()->registerScene(new MainMenuScene());
 
 
-
-	MouseObject* mouse = new MouseObject(); 
-	GameObjectManager::GetInstance()->AddObject(mouse); 
-
-	FPSCounter* fpsCounter = new FPSCounter();  
-	GameObjectManager::GetInstance()->AddObject(fpsCounter);  
+	InteractiveLoadingScreen* screen = new InteractiveLoadingScreen();
+	GameObjectManager::GetInstance()->AddObject(screen);
 }
 
 // public methods of the Game Class

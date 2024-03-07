@@ -51,13 +51,15 @@ void PhysicsManager::PhysicsUpdate(float dt)
 			AGameObject* parentA = colA->GetOwner();
 			AGameObject* parentB = colB->GetOwner();
 
-			if (colA != colB && parentA->Enabled && parentB->Enabled)
+			if (colA != colB && colA->Enabled && colB->Enabled && parentA->Enabled && parentB->Enabled)
 			{
 				// check collision between two objects 
 				if (colA->WillCollide(colB) && !colA->HasAlreadyCollidedWith(parentB) && !colB->HasAlreadyCollidedWith(parentA))
 				{
 					/*colA->SetAlreadyCollided(true);
 					colB->SetAlreadyCollided(true);*/
+
+					//std::cout << "collision enter\n";
 
 					colA->CollisionEnter(parentB);
 					colB->CollisionEnter(parentA); 
@@ -67,9 +69,13 @@ void PhysicsManager::PhysicsUpdate(float dt)
 					/*colA->SetAlreadyCollided(false); 
 					colB->SetAlreadyCollided(false);*/ 
 
-					colA->CollisionExit(parentA); 
-					colB->CollisionExit(parentB); 
+					//std::cout << "collision exit\n";
+
+					colA->CollisionExit(parentB); 
+					colB->CollisionExit(parentA); 
 				}
+
+				//std::cout << colA->GetName() << " " << colA->GetCollidedObjsList().size() << "   " << colB->GetName() << " " << colB->GetCollidedObjsList().size() << "\n";
 			}
 		}
 	}

@@ -17,11 +17,9 @@ void Temp::Initialize()
 	sf::Texture* texture = TextureManager::GetInstance()->GetTexture(key + std::to_string(num + 1));
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*texture);
-	this->sprite->setScale(4, 4);
+	this->sprite->setScale(8, 8);
 
-	this->SetGlobalPosition(num * 16 * 4, y); 
-
-	std::cout << this->GetGlobalPosition().x << " " << this->GetGlobalPosition().y << " " << this->sprite->getPosition().x << " " << this->sprite->getPosition().y << "\n";
+	this->SetGlobalPosition(x, y); 
 
 	Renderer* renderer = new Renderer(name);
 	renderer->AssignDrawable(sprite);

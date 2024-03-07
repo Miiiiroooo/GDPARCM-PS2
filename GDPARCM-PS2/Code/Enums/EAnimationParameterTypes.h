@@ -10,5 +10,6 @@ enum EAnimationParameterTypes
 	Float_Greater,
 	Float_Lesser,
 	Bool,
-	Trigger
+	Trigger,
+	Trigger_Finished
 };

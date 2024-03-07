@@ -97,6 +97,9 @@
     <Filter Include="Header Files\ObjectPooling\Objects">
       <UniqueIdentifier>{c91ed6aa-8a1f-4381-9cd5-e2723f18b668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{f49fb09b-90af-494c-87fd-0f2463b3da4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\ObjectPooling\APoolable.cpp">
@@ -159,9 +162,6 @@
     <ClCompile Include="Code\GameObjects\Temp.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Code\GameObjects\CatObject.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Components\Animation\AnimationController.cpp">
       <Filter>Source Files\Components\Animation</Filter>
     </ClCompile>
@@ -219,6 +219,30 @@
     <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp">
       <Filter>Source Files\ObjectPooling\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Code\GameObjects\PlayableArea.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjectPooling\Objects\CatObject.cpp">
+      <Filter>Source Files\ObjectPooling\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\CatSpawnerScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\CatScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\ScoreManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\HitBehaviorScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\UI\LoadingScreenUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\SFXManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\ObjectPooling\APoolable.h">
@@ -245,9 +269,6 @@
     <ClInclude Include="Code\MultiThreading\ThreadPoolScheduler.h">
       <Filter>Header Files\MultiThreading</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Managers\EStreamingTypes.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Managers\GameObjectManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
@@ -266,9 +287,6 @@
     <ClInclude Include="Code\Components\AComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Components\EComponentTypes.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Components\Renderer.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -282,9 +300,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\GameObjects\Temp.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\GameObjects\CatObject.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Code\Components\Animation\AnimationController.h">
@@ -303,9 +318,6 @@
       <Filter>Header Files\Components\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Code\Components\Animation\AnimationParameterValues.h">
-      <Filter>Header Files\Components\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Components\Animation\EAnimationParameterTypes.h">
       <Filter>Header Files\Components\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Code\Components\Animation\Transition.h">
@@ -359,14 +371,56 @@
     <ClInclude Include="Code\Physics\PhysicsManager.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Code\GameObjects\EObjectTags.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Components\Scripts\CheeseSpawnerScript.h">
       <Filter>Header Files\Components\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h">
       <Filter>Header Files\ObjectPooling\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\PlayableArea.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectPooling\Objects\CatObject.h">
+      <Filter>Header Files\ObjectPooling\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\CatSpawnerScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\CatScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\ScoreManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EAnimationParameterTypes.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\ECatStates.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EComponentTypes.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EStreamingTypes.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EObjectTags.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\HitBehaviorScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\UI\LoadingScreenUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\IScoreListener.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EOriginAlignment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\SFXManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

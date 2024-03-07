@@ -1,0 +1,2 @@
+CatMeow     Media/Audio/cat_meow.wav
+Eat         Media/Audio/eat.wav

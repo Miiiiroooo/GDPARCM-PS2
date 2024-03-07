@@ -6,6 +6,7 @@ AComponent::AComponent(std::string name, EComponentTypes type)
 	this->name = name;
 	this->owner = NULL;
 	this->type = type;
+	this->componentEnabled = true;
 }
 
 AComponent::~AComponent()
@@ -43,6 +44,16 @@ EComponentTypes AComponent::GetType()
 std::string AComponent::GetName()
 {
 	return this->name;
+}
+
+bool AComponent::IsEnabled()
+{
+	return componentEnabled;
+}
+
+void AComponent::SetEnabled(bool flag)
+{
+	componentEnabled = flag;
 }
 
 

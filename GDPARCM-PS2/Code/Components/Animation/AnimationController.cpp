@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <rapidjson/filereadstream.h>
 #include "../../Managers/TextureManager.h"
-
+#include "../../GameObjects/AGameObject.h"
 
 AnimationController::AnimationController(std::string compName, Renderer* renderer, std::string jsonAnimationDataPath)
 	: AComponent(compName, EComponentTypes::Animation), renderer(renderer), jsonAnimationDataPath(jsonAnimationDataPath)
@@ -107,6 +107,11 @@ void AnimationController::InitializeAnimations(std::vector<std::string> animatio
 			}
 		}
 	}
+
+	// update renderer to the first frame
+	sf::Sprite* firstFrame = currentAnimationState->GetCurrentSpriteAnimation(); 
+	renderer->AssignDrawable(firstFrame); 
+	if (owner != NULL) owner->UpdateSprite(firstFrame);  
 }
 
 void AnimationController::RetrieveAnimationKeyFrames(rapidjson::Value::ConstMemberIterator& anm_itr, float scaling, std::vector<Animation2DKeyFrames>& keyFramesList)
@@ -149,28 +154,29 @@ void AnimationController::RetrieveTransitions(rapidjson::Value::ConstMemberItera
 		Transition newTransition = Transition(selectedParam, NULL); 
 		switch (type)
 		{
-		case Int_Greater:
-		case Int_Lesser:
-		case Int_Equal:
-		case Int_NotEqual:
-			newTransition.condition.intValue = trs_itr->value["condition"].GetInt();
-			transitionsList.push_back(newTransition);
-			break;
-		case Float_Greater:
-		case Float_Lesser:
-			newTransition.condition.floatValue = trs_itr->value["condition"].GetFloat();
-			transitionsList.push_back(newTransition);
-			break;
-		case Bool:
-			newTransition.condition.boolValue = trs_itr->value["condition"].GetBool();
-			transitionsList.push_back(newTransition);
-			break;
-		case Trigger:
-			newTransition.condition.isTriggered = true;
-			transitionsList.push_back(newTransition);
-			break;
-		default:
-			break;
+			case Int_Greater:
+			case Int_Lesser:
+			case Int_Equal:
+			case Int_NotEqual:
+				newTransition.condition.intValue = trs_itr->value["condition"].GetInt();
+				transitionsList.push_back(newTransition);
+				break;
+			case Float_Greater:
+			case Float_Lesser:
+				newTransition.condition.floatValue = trs_itr->value["condition"].GetFloat();
+				transitionsList.push_back(newTransition);
+				break;
+			case Bool:
+				newTransition.condition.boolValue = trs_itr->value["condition"].GetBool();
+				transitionsList.push_back(newTransition);
+				break;
+			case Trigger:
+			case Trigger_Finished:
+				newTransition.condition.isTriggered = true;
+				transitionsList.push_back(newTransition);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -236,17 +242,20 @@ void AnimationController::Perform()
 	{
 		scaling.x *= -1;
 	}
+
 	currentSprite->setScale(scaling);
 	renderer->AssignDrawable(currentSprite);
+	owner->UpdateSprite(currentSprite);
 
 	// check for any transitions
 	std::vector<Transition> transitionsList = animationsGraph[currentAnimationState];
 
 	for (auto& transition : transitionsList)
 	{
-		if (transition.parameter->CheckForTransition(transition.condition))
+		if (transition.parameter->CheckForTransition(transition.condition, currentAnimationState->IsAtTheEndOfFrame()))
 		{
-			currentAnimationState->ResetAnimation(); 
+			currentAnimationState->ResetAnimation();
+			transition.parameter->ResetCurrentValues();
 			currentAnimationState = transition.animation;
 			break;
 		}
@@ -282,6 +291,7 @@ EAnimationParameterTypes AnimationController::GetParameterTypeFromString(std::st
 	else if (paramTypeName == "Float_Lesser") { return Float_Lesser; }
 	else if (paramTypeName == "Bool") { return Bool; }
 	else if (paramTypeName == "Trigger") { return Trigger; }
+	else if (paramTypeName == "Trigger_Finished") { return Trigger_Finished; }
 	else { return Unknown; } 
 }
 #pragma endregion
