@@ -1,13 +1,15 @@
 #include "InteractiveLoadingScreen.h"
 #include "../Game.h"
-#include "../Components/Scripts/InteractiveLoadingChecker.h"
 #include "../GameObjects/FPSCounter.h"
 #include "../GameObjects/EmptyGameObject.h"
-#include "../GameObjects/MouseObject.h"
-#include "../GameObjects/PlayableArea.h"
+#include "../GameObjects/LoadingScreen/MouseObject.h"
+#include "../GameObjects/LoadingScreen/PlayableArea.h"
+#include "../GameObjects/LoadingScreen/IrisFadeObject.h"
 #include "../Components/Scripts/CheeseSpawnerScript.h"
 #include "../Components/Scripts/CatSpawnerScript.h"
-#include "../UI/LoadingScreenUI.h"
+#include "../Components/Scripts/InteractiveLoadingChecker.h"
+
+#include "../GameObjects/LoadingScreen/IrisFadeObject.h"
 
 InteractiveLoadingScreen::InteractiveLoadingScreen() : AGameObject("InteractiveLoadingScreen")
 {
@@ -52,4 +54,8 @@ void InteractiveLoadingScreen::Initialize()
 	// attach loading screen logic 
 	InteractiveLoadingChecker* script = new InteractiveLoadingChecker(loadingScreenUI);
 	this->AttachComponent(script); 
+
+
+	IrisFadeObject* iris = new IrisFadeObject(mouse);
+	this->AttachChild(iris);
 }

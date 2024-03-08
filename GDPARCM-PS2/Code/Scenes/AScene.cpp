@@ -3,11 +3,12 @@
 #include "../Physics/PhysicsManager.h"
 
 
-AScene::AScene(std::string sceneName)
+AScene::AScene(std::string sceneName, bool needsLoadingScreen)
 {
 	this->sceneName = sceneName;
 	this->areResourcesLoaded = false;
 	this->areObjectsLoaded = false;
+	this->needsLoadingScreen = needsLoadingScreen;
 }
 
 AScene::~AScene()
@@ -24,6 +25,11 @@ void AScene::OnUnloadObjects()
 std::string AScene::GetSceneName()
 {
 	return this->sceneName;
+}
+
+bool AScene::NeedsLoadingScreen()
+{
+	return needsLoadingScreen;
 }
 
 bool AScene::IsAlreadyLoaded()

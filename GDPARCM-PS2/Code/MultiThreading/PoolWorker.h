@@ -1,6 +1,6 @@
 #pragma once
 #include "IETThread.h"
-#include "AWorkerTask.h"
+#include "Tasks/AWorkerTask.h"
 
 class ThreadPoolScheduler;
 

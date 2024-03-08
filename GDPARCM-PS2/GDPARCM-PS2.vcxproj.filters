@@ -100,6 +100,12 @@
     <Filter Include="Header Files\Enums">
       <UniqueIdentifier>{f49fb09b-90af-494c-87fd-0f2463b3da4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects\LoadingScreen">
+      <UniqueIdentifier>{c91f74ae-d1db-46c8-b080-13e0b6325b9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\LoadingScreen">
+      <UniqueIdentifier>{ed62f16f-4853-4a27-a992-065fc2f35251}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\ObjectPooling\APoolable.cpp">
@@ -111,7 +117,7 @@
     <ClCompile Include="Code\ObjectPooling\ObjectPoolManager.cpp">
       <Filter>Source Files\ObjectPooling</Filter>
     </ClCompile>
-    <ClCompile Include="Code\MultiThreading\AWorkerTask.cpp">
+    <ClCompile Include="Code\MultiThreading\Tasks\AWorkerTask.cpp">
       <Filter>Source Files\MultiThreading\Tasks</Filter>
     </ClCompile>
     <ClCompile Include="Code\MultiThreading\IETThread.cpp">
@@ -171,9 +177,6 @@
     <ClCompile Include="Code\Components\Animation\AnimationParameter.cpp">
       <Filter>Source Files\Components\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Code\GameObjects\MouseObject.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Components\Input\MouseController.cpp">
       <Filter>Source Files\Components\Inputs</Filter>
     </ClCompile>
@@ -219,9 +222,6 @@
     <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp">
       <Filter>Source Files\ObjectPooling\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Code\GameObjects\PlayableArea.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Code\ObjectPooling\Objects\CatObject.cpp">
       <Filter>Source Files\ObjectPooling\Objects</Filter>
     </ClCompile>
@@ -243,6 +243,36 @@
     <ClCompile Include="Code\Managers\SFXManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Code\GameObjects\LoadingScreen\MouseObject.cpp">
+      <Filter>Source Files\GameObjects\LoadingScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\LoadingScreen\PlayableArea.cpp">
+      <Filter>Source Files\GameObjects\LoadingScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameObjects\LoadingScreen\IrisFadeObject.cpp">
+      <Filter>Source Files\GameObjects\LoadingScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\IrisFadeBehaviorScript.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Scenes\LoadingScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Scenes\FinalScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\Tasks\LoadTextureBatchTask.cpp">
+      <Filter>Source Files\MultiThreading\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\Tasks\LoadAudioTask.cpp">
+      <Filter>Source Files\MultiThreading\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Screens\FinalScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Managers\ApplicationManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\ObjectPooling\APoolable.h">
@@ -254,7 +284,7 @@
     <ClInclude Include="Code\ObjectPooling\ObjectPoolManager.h">
       <Filter>Header Files\ObjectPooling</Filter>
     </ClInclude>
-    <ClInclude Include="Code\MultiThreading\AWorkerTask.h">
+    <ClInclude Include="Code\MultiThreading\Tasks\AWorkerTask.h">
       <Filter>Header Files\MultiThreading\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Code\MultiThreading\IETThread.h">
@@ -323,9 +353,6 @@
     <ClInclude Include="Code\Components\Animation\Transition.h">
       <Filter>Header Files\Components\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Code\GameObjects\MouseObject.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Components\Input\MouseController.h">
       <Filter>Header Files\Components\Inputs</Filter>
     </ClInclude>
@@ -377,9 +404,6 @@
     <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h">
       <Filter>Header Files\ObjectPooling\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Code\GameObjects\PlayableArea.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Code\ObjectPooling\Objects\CatObject.h">
       <Filter>Header Files\ObjectPooling\Objects</Filter>
     </ClInclude>
@@ -416,10 +440,52 @@
     <ClInclude Include="Code\Managers\IScoreListener.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Enums\EOriginAlignment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Managers\SFXManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\LoadingScreen\MouseObject.h">
+      <Filter>Header Files\GameObjects\LoadingScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\LoadingScreen\PlayableArea.h">
+      <Filter>Header Files\GameObjects\LoadingScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameObjects\LoadingScreen\IrisFadeObject.h">
+      <Filter>Header Files\GameObjects\LoadingScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\IrisFadeBehaviorScript.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\LoadingScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\FinalScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EIrisStates.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EOriginAlignment.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\Tasks\LoadTextureBatchTask.h">
+      <Filter>Header Files\MultiThreading\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\Tasks\LoadAudioTask.h">
+      <Filter>Header Files\MultiThreading\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Screens\FinalScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\IFinishedSceneLoadListener.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\IFinishedSceneTransitionListener.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Enums\EGameStates.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Managers\ApplicationManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>

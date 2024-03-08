@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map> 
 #include "../Scenes/AScene.h"
+#include "../Scenes/LoadingScene.h"
 
 typedef std::unordered_map<std::string, AScene*> SceneTable;
 typedef std::vector<std::string> SceneList;
@@ -15,7 +16,7 @@ public:
 	void UnloadScene();
 	void CheckSceneToLoad(); // does the loading if there are scenes to load
 
-	AScene* GetActiveScene();
+	std::string GetActiveSceneName();
 	bool IsGivenSceneLoaded(std::string sceneName);
 
 private:
@@ -24,15 +25,17 @@ private:
 
 public:
 	// scene names
-	static std::string MAIN_MENU_SCREEN_NAME;
+	static std::string FINAL_SCENE_NAME;
 	
 private:
 	static SceneManager* sharedInstance;
 
 	bool doesSceneNeedToBeLoaded = false;
-	std::string toLoadScene;
+	std::string toLoadSceneName;
+	AScene* toLoadScene;
 
 	SceneTable storedScenes;
 	AScene* activeScene;
+	AScene* loadingScene;
 };
 

@@ -1,5 +1,8 @@
 #include "IETThread.h"
 
+
+std::binary_semaphore IETThread::finishedLoadingSemaphore(1);
+
 IETThread::IETThread()
 {
 

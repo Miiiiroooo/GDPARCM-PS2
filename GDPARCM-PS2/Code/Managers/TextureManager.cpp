@@ -5,6 +5,7 @@
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
 #include <cassert>
+
 #include "../Game.h"
 #include "../StringUtils.h"
 #include "../MultiThreading/IETThread.h"
@@ -45,7 +46,7 @@ sf::Texture* TextureManager::GetStreamTexture(int index)
 	return streamTexturesList[index];
 }
 
-void TextureManager::LoadAllMainAssets()
+void TextureManager::LoadAllLoadingScreenAssets()
 {
 	FILE* inFile = fopen("Media/SpriteSheetData.json", "rb");
 	assert(inFile != NULL);
@@ -83,37 +84,10 @@ void TextureManager::LoadAllMainAssets()
 	LoadTexture("Cheese", "Media/Sprites/Cheese.png", false);
 }
 
-void TextureManager::LoadFromTextFile()
+void TextureManager::LoadStreamedAssets(std::string key)
 {
-	std::ifstream stream("Media/assets.txt");
-	
-	// Load background texture
-	std::string temp; 
-	std::getline(stream, temp); 
-	LoadTexture(GetAssetName(temp), temp, false); 
-
-	// Get Icon Name
-	std::getline(stream, this->baseIconName); 
-
-	stream.close();
-}
-
-void TextureManager::LoadIcon(int iconID)
-{
-	IETThread::Sleep(500);
-
-	std::string iconID_string = std::to_string(iconID);
-	int digits = iconID_string.length();
-	iconID_string.insert(0, 3 - digits, '0');
-	std::string fullIconName = this->baseIconName + iconID_string + ".png"; 
-
-	LoadTexture(GetAssetName(fullIconName), fullIconName, true);  
-}
-
-std::string TextureManager::GetAssetName(std::string filepath)
-{
-	std::vector<std::string> tokens = StringUtils::Split(filepath, '/'); // get tokens from directory
-	return StringUtils::Split(tokens[tokens.size() - 1], '.')[0];  // remove ".png" from the string
+	std::string path = STREAMING_PATH + key + ".png";
+	LoadTexture(key, path, true);
 }
 
 void TextureManager::LoadTexture(std::string key, std::string path, bool isStreamAsset)

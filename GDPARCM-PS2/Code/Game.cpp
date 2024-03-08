@@ -1,12 +1,15 @@
 #include "Game.h"
-#include "Managers/GameObjectManager.h"
+#include "MultiThreading/ThreadPoolScheduler.h"
+#include "Managers/ApplicationManager.h"
 #include "Managers/TextureManager.h"
+#include "Managers/SFXManager.h"
 #include "Managers/FontManager.h"
 #include "Managers/ScoreManager.h"
-#include "Managers/SFXManager.h"
 #include "Managers/SceneManager.h"
+#include "Scenes/FinalScene.h"
 #include "Physics/PhysicsManager.h"
 
+#include "Managers/GameObjectManager.h"
 #include "Screens/InteractiveLoadingScreen.h"
 #include "GameObjects/Temp.h"
 
@@ -39,13 +42,20 @@ Game::Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GDPARCM", sf:
 
 void Game::Initialize()
 {
+	// Initialize Scheduler
+	ThreadPoolScheduler::GetInstance()->Initialize(); 
+	ThreadPoolScheduler::GetInstance()->StartScheduler(); 
+	ThreadPoolScheduler::GetInstance()->StartThread(); 
+
 	// Initialize Managers
-	TextureManager::GetInstance()->LoadAllMainAssets();
+	ApplicationManager::GetInstance()->Initialize(&window);
+	TextureManager::GetInstance()->LoadAllLoadingScreenAssets();
+	SFXManager::GetInstance()->LoadAllLoadingScreenAudio("Media/AudioFile.txt");
 	FontManager::GetInstance()->LoadAll();
 	ScoreManager::GetInstance()->Initialize();
-	SFXManager::GetInstance()->LoadAll("Media/AudioFile.txt");
 
-	//SceneManager::getInstance()->registerScene(new MainMenuScene());
+	//SceneManager::GetInstance()->RegisterScene(new FinalScene()); 
+	//SceneManager::GetInstance()->LoadScene(SceneManager::FINAL_SCENE_NAME);
 
 
 	InteractiveLoadingScreen* screen = new InteractiveLoadingScreen();
@@ -75,7 +85,7 @@ void Game::Run()
 		}
 
 		Render();
-		//SceneManager::GetInstance()->CheckSceneToLoad();
+		SceneManager::GetInstance()->CheckSceneToLoad();
 	}
 }
 

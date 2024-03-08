@@ -1,8 +1,8 @@
 #include "SceneManager.h"
-
+#include "ApplicationManager.h"
 
 // static declarations of the SceneManager Class
-std::string SceneManager::MAIN_MENU_SCREEN_NAME = "MainMenuScene";
+std::string SceneManager::FINAL_SCENE_NAME = "FinalScene";
 
 SceneManager* SceneManager::sharedInstance = NULL;
 
@@ -17,43 +17,74 @@ SceneManager* SceneManager::GetInstance()
 // public methods of the SceneManager Class
 void SceneManager::RegisterScene(AScene* scene)
 {
-	this->storedScenes[scene->GetSceneName()] = scene;
+	storedScenes[scene->GetSceneName()] = scene;
 }
 
 void SceneManager::LoadScene(std::string sceneName)
 {
-	this->toLoadScene = sceneName;
-	this->doesSceneNeedToBeLoaded = true;
-
-	// loading screen
+	toLoadScene = NULL;
+	toLoadSceneName = sceneName;
+	doesSceneNeedToBeLoaded = true;
 }
 
 void SceneManager::UnloadScene()
 {
-	if (this->activeScene != NULL)
+	if (activeScene != NULL)
 	{
-		this->activeScene->OnUnloadObjects();
-		this->activeScene->OnUnloadResources();
+		activeScene->OnUnloadObjects();
+		activeScene->OnUnloadResources();
 	}
 }
 
 void SceneManager::CheckSceneToLoad()
 {
-	if (this->doesSceneNeedToBeLoaded)
+	if (doesSceneNeedToBeLoaded)
 	{
-		this->UnloadScene();
-		this->activeScene = this->storedScenes[this->toLoadScene];
-		this->activeScene->OnLoadResources();
-		this->activeScene->OnLoadObjects();
-		this->doesSceneNeedToBeLoaded = false;
+		UnloadScene();
 
-		// loading screen?
+		doesSceneNeedToBeLoaded = false;
+
+		AScene* scene = storedScenes[toLoadSceneName];
+		if (!scene->NeedsLoadingScreen())
+		{
+			activeScene = scene;  
+			activeScene->OnLoadResources(); 
+			activeScene->OnLoadObjects();
+		}
+		else
+		{
+			activeScene = NULL;
+
+			toLoadScene = scene;
+			toLoadScene->OnLoadResources();
+			toLoadScene->OnLoadObjects(); 
+
+			if (loadingScene == NULL)
+			{
+				loadingScene = new LoadingScene();
+			}
+			loadingScene->OnLoadResources();
+			loadingScene->OnLoadObjects(); 
+
+			ApplicationManager::GetInstance()->UpdateGameState(EGameStates::Loading);
+		}
+	}
+
+	if (toLoadScene != NULL && toLoadScene->IsAlreadyLoaded())
+	{
+		loadingScene->OnUnloadObjects();
+		loadingScene->OnUnloadResources();
+
+		activeScene = toLoadScene;
+		toLoadScene = NULL;
+
+		ApplicationManager::GetInstance()->UpdateGameState(EGameStates::Running);
 	}
 }
 
-AScene* SceneManager::GetActiveScene()
+std::string SceneManager::GetActiveSceneName()
 {
-	return activeScene;
+	return activeScene->GetSceneName();
 }
 
 bool SceneManager::IsGivenSceneLoaded(std::string sceneName)

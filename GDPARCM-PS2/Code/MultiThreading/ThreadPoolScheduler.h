@@ -4,24 +4,29 @@
 #include <unordered_map>
 #include <queue>
 #include <string>
+#include <SFML/Graphics.hpp>
 
 
-class ThreadPoolScheduler : public IETThread
+class ThreadPoolScheduler : public IETThread, sf::NonCopyable
 {
 public:
-	ThreadPoolScheduler(std::string name);
+	static ThreadPoolScheduler* GetInstance();
 	~ThreadPoolScheduler();
 
+	void Initialize();
 	void StartScheduler();
 	void StopScheduler();
 	void ScheduleTask(AWorkerTask* task);
 	void OnFinishedWorker(int id);
 
 private:
+	ThreadPoolScheduler() {};
 	void Run() override;
 
 
 private:
+	static ThreadPoolScheduler* sharedInstance;
+
 	std::string name;
 	int maxWorkers;
 	bool isRunning;

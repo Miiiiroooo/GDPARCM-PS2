@@ -2,13 +2,16 @@
 #include <iostream>
 
 
-ThreadPoolScheduler::ThreadPoolScheduler(std::string name) : name(name), maxWorkers(std::thread::hardware_concurrency() * 2), isRunning(false)
+ThreadPoolScheduler* ThreadPoolScheduler::sharedInstance = NULL;
+
+ThreadPoolScheduler* ThreadPoolScheduler::GetInstance()
 {
-	for (int i = 0; i < maxWorkers; i++)
+	if (sharedInstance == NULL)
 	{
-		PoolWorker* newWorker = new PoolWorker(i, this);
-		inactiveThreads.push(newWorker);
+		sharedInstance = new ThreadPoolScheduler();
 	}
+
+	return sharedInstance;
 }
 
 ThreadPoolScheduler::~ThreadPoolScheduler()
@@ -37,14 +40,32 @@ ThreadPoolScheduler::~ThreadPoolScheduler()
 	}
 }
 
+void ThreadPoolScheduler::Initialize()
+{
+	maxWorkers = std::thread::hardware_concurrency() * 2;
+	isRunning = false;
+
+	for (int i = 0; i < maxWorkers; i++)
+	{
+		PoolWorker* newWorker = new PoolWorker(i, this);
+		inactiveThreads.push(newWorker);
+	}
+}
+
 void ThreadPoolScheduler::StartScheduler()
 {
-	this->isRunning = true;
+	if (inactiveThreads.size() <= 0)
+	{
+		std::cout << "cannot start scheduler without initializing it\n";
+		return;
+	}
+
+	isRunning = true;
 }
 
 void ThreadPoolScheduler::StopScheduler()
 {
-	this->isRunning = false;
+	isRunning = false;
 }
 
 void ThreadPoolScheduler::ScheduleTask(AWorkerTask* task)

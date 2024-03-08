@@ -8,17 +8,20 @@ class SFXManager : sf::NonCopyable
 // methods
 public:
 	static SFXManager* GetInstance();
-	void LoadAll(std::string directory);
+
 	sf::SoundBuffer* GetAudio(std::string);
+	sf::SoundBuffer* GetStreamedAudio();
+	void LoadAllLoadingScreenAudio(std::string directory);
+	void LoadStreamedAudio(std::string directory);
 
 private:
 	SFXManager() {};
-
-	void LoadAudio(std::string, std::string);
+	void LoadAudio(std::string, std::string, bool isStreamedAsset);
 
 
 // attributes
 private:
-	std::unordered_map<std::string, sf::SoundBuffer*> audioMap;
 	static SFXManager* sharedInstance;
+	std::unordered_map<std::string, sf::SoundBuffer*> audioMap;
+	sf::SoundBuffer* streamedAudio;
 };

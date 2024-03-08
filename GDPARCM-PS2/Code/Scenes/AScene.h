@@ -4,7 +4,7 @@
 class AScene 
 {
 public:
-	AScene(std::string sceneName);
+	AScene(std::string sceneName, bool needsLoadingScreen);
 	~AScene();
 
 	virtual void OnLoadResources() = 0;
@@ -13,15 +13,18 @@ public:
 	virtual void OnUnloadObjects();
 
 	std::string GetSceneName();
+	bool NeedsLoadingScreen();
 	bool IsAlreadyLoaded();
 
 protected:
 	void RegisterObject(AGameObject* object);
+
+	// consider adding list of listeners
 
 
 protected:
 	std::string sceneName;
 	bool areResourcesLoaded;
 	bool areObjectsLoaded;
+	bool needsLoadingScreen;
 };
-
