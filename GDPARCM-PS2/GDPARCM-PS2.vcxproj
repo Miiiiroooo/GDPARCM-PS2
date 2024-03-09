@@ -147,6 +147,7 @@
     <ClCompile Include="Code\Components\Scripts\CatSpawnerScript.cpp" />
     <ClCompile Include="Code\Managers\ApplicationManager.cpp" />
     <ClCompile Include="Code\Managers\SFXManager.cpp" />
+    <ClCompile Include="Code\MultiThreading\Tasks\SortTextureBatchTask.cpp" />
     <ClCompile Include="Code\ObjectPooling\Objects\CheeseObject.cpp" />
     <ClCompile Include="Code\Components\Scripts\CheeseSpawnerScript.cpp" />
     <ClCompile Include="Code\Components\Animation\AnimationParameter.cpp" />
@@ -177,7 +178,6 @@
     <ClCompile Include="Code\Physics\PhysicsManager.cpp" />
     <ClCompile Include="Code\Scenes\AScene.cpp" />
     <ClCompile Include="Code\StringUtils.cpp" />
-    <ClCompile Include="Code\GameObjects\Temp.cpp" />
     <ClCompile Include="Code\GameObjects\LoadingScreen\MouseObject.cpp" />
     <ClCompile Include="Code\Components\Input\MouseController.cpp" />
     <ClCompile Include="Code\Components\Scripts\MouseScript.cpp" />
@@ -186,7 +186,6 @@
     <ClCompile Include="Code\UI\UIButton.cpp" />
     <ClCompile Include="Code\UI\UIText.cpp" />
     <ClCompile Include="Code\Screens\InteractiveLoadingScreen.cpp" />
-    <ClCompile Include="Code\Components\Scripts\InteractiveLoadingChecker.cpp" />
     <ClCompile Include="Code\GameObjects\LoadingScreen\PlayableArea.cpp" />
     <ClCompile Include="Code\Managers\ScoreManager.cpp" />
     <ClCompile Include="Code\Components\Scripts\HitBehaviorScript.cpp" />
@@ -198,12 +197,16 @@
     <ClCompile Include="Code\MultiThreading\Tasks\LoadAudioTask.cpp" />
     <ClCompile Include="Code\MultiThreading\Tasks\LoadTextureBatchTask.cpp" />
     <ClCompile Include="Code\Screens\FinalScreen.cpp" />
+    <ClCompile Include="Code\Components\Scripts\LoadingScreenManager.cpp" />
+    <ClCompile Include="Code\Scenes\ToBeLoadedScene.cpp" />
+    <ClCompile Include="Code\Components\Scripts\VideoHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Components\Scripts\CatScript.h" />
     <ClInclude Include="Code\Components\Scripts\CatSpawnerScript.h" />
     <ClInclude Include="Code\Managers\ApplicationManager.h" />
     <ClInclude Include="Code\Managers\SFXManager.h" />
+    <ClInclude Include="Code\MultiThreading\Tasks\SortTextureBatchTask.h" />
     <ClInclude Include="Code\ObjectPooling\Objects\CheeseObject.h" />
     <ClInclude Include="Code\Components\Scripts\CheeseSpawnerScript.h" />
     <ClInclude Include="Code\Components\Animation\AnimationParameterValues.h" />
@@ -239,7 +242,6 @@
     <ClInclude Include="Code\Physics\PhysicsManager.h" />
     <ClInclude Include="Code\Scenes\AScene.h" />
     <ClInclude Include="Code\StringUtils.h" />
-    <ClInclude Include="Code\GameObjects\Temp.h" />
     <ClInclude Include="Code\Enums\EAnimationParameterTypes.h" />
     <ClInclude Include="Code\Components\Animation\Transition.h" />
     <ClInclude Include="Code\GameObjects\LoadingScreen\MouseObject.h" />
@@ -251,7 +253,6 @@
     <ClInclude Include="Code\UI\UIButton.h" />
     <ClInclude Include="Code\UI\UIText.h" />
     <ClInclude Include="Code\Screens\InteractiveLoadingScreen.h" />
-    <ClInclude Include="Code\Components\Scripts\InteractiveLoadingChecker.h" />
     <ClInclude Include="Code\Enums\EObjectTags.h" />
     <ClInclude Include="Code\GameObjects\LoadingScreen\PlayableArea.h" />
     <ClInclude Include="Code\Enums\ECatStates.h" />
@@ -271,6 +272,9 @@
     <ClInclude Include="Code\Scenes\IFinishedSceneLoadListener.h" />
     <ClInclude Include="Code\Scenes\IFinishedSceneTransitionListener.h" />
     <ClInclude Include="Code\Enums\EGameStates.h" />
+    <ClInclude Include="Code\Components\Scripts\LoadingScreenManager.h" />
+    <ClInclude Include="Code\Scenes\ToBeLoadedScene.h" />
+    <ClInclude Include="Code\Components\Scripts\VideoHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Media\AnimationData.json" />

@@ -1,12 +1,14 @@
 #include "CatObject.h"
 #include "../../Components/Renderer.h"
-#include "../../Components/Scripts/CatScript.h"
 #include "../../Components/Animation/AnimationController.h"
 #include "../../Physics/PhysicsManager.h"
 
-CatObject::CatObject(int id, AGameObject* mouse, sf::FloatRect area) : APoolable("CatObj_" + std::to_string(id)), id(id), mouse(mouse), catCollider(NULL), playableArea(area)
+CatObject::CatObject(int id, AGameObject* mouse, sf::FloatRect area) : APoolable("CatObj_" + std::to_string(id)), id(id), mouse(mouse), playableArea(area)
 {
 	tag = EObjectTags::Enemy;
+
+	catCollider = NULL;
+	script = NULL;
 }
 
 CatObject::~CatObject()
@@ -26,8 +28,8 @@ void CatObject::Initialize()
 	catCollider = new Collider("CatCollider_" + std::to_string(id));
 	this->AttachComponent(catCollider);
 
-	CatScript* script = new CatScript(playableArea, animController, catCollider);
-	script->SetMouse(mouse);
+	script = new CatScript(playableArea, animController, catCollider); 
+	script->SetMouse(mouse); 
 	this->AttachComponent(script);
 }
 
@@ -61,4 +63,9 @@ void CatObject::RandomSpawn()
 	float randX = rand() % (int)(spawnWidth) - (spawnWidth / 2) + midX;
 	float randY = rand() % (int)(spawnHeight) - (spawnHeight / 2) + midY; 
 	SetGlobalPosition(randX, randY);
+}
+
+CatScript* CatObject::GetScript()
+{
+	return script;
 }

@@ -165,9 +165,6 @@
     <ClCompile Include="Code\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\GameObjects\Temp.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Components\Animation\AnimationController.cpp">
       <Filter>Source Files\Components\Animation</Filter>
     </ClCompile>
@@ -203,9 +200,6 @@
     </ClCompile>
     <ClCompile Include="Code\Managers\SceneManager.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Components\Scripts\InteractiveLoadingChecker.cpp">
-      <Filter>Source Files\Components\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="Code\Screens\InteractiveLoadingScreen.cpp">
       <Filter>Source Files\Screens</Filter>
@@ -273,6 +267,18 @@
     <ClCompile Include="Code\Managers\ApplicationManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\LoadingScreenManager.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Scenes\ToBeLoadedScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Components\Scripts\VideoHandler.cpp">
+      <Filter>Source Files\Components\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\MultiThreading\Tasks\SortTextureBatchTask.cpp">
+      <Filter>Source Files\MultiThreading\Tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\ObjectPooling\APoolable.h">
@@ -329,9 +335,6 @@
     <ClInclude Include="Code\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\GameObjects\Temp.h">
-      <Filter>Header Files\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Components\Animation\AnimationController.h">
       <Filter>Header Files\Components\Animation</Filter>
     </ClInclude>
@@ -385,9 +388,6 @@
     </ClInclude>
     <ClInclude Include="Code\Screens\InteractiveLoadingScreen.h">
       <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Components\Scripts\InteractiveLoadingChecker.h">
-      <Filter>Header Files\Components\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="Code\Physics\ICollisionListener.h">
       <Filter>Header Files\Physics</Filter>
@@ -487,6 +487,18 @@
     </ClInclude>
     <ClInclude Include="Code\Managers\ApplicationManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\LoadingScreenManager.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Scenes\ToBeLoadedScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Components\Scripts\VideoHandler.h">
+      <Filter>Header Files\Components\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\MultiThreading\Tasks\SortTextureBatchTask.h">
+      <Filter>Header Files\MultiThreading\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

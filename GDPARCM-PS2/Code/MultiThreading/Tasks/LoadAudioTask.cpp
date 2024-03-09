@@ -3,7 +3,7 @@
 #include "../../Managers/SFXManager.h"
 #include "../IETThread.h"
 
-LoadAudioTask::LoadAudioTask()
+LoadAudioTask::LoadAudioTask(std::string steamedAudioDirectory) : steamedAudioDirectory(steamedAudioDirectory)
 {
 	scene = NULL;
 }
@@ -15,18 +15,18 @@ LoadAudioTask::~LoadAudioTask()
 
 void LoadAudioTask::ExecuteTask()
 {
-	SFXManager::GetInstance()->LoadStreamedAudio(STREAMED_AUDIO_DIRECTORY);
+	SFXManager::GetInstance()->LoadStreamedAudio(steamedAudioDirectory);
 
-	IETThread::finishedLoadingSemaphore.acquire();
+	IETThread::finishedResourcesSem.acquire();
 	if (scene != NULL)
 	{
-		scene->OnFinishedLoading();
+		scene->OnFinishedLoadingResources();
 	}
 	else
 	{
 		std::cout << "Finished loading assets, but cannot report to scene\n";
 	}
-	IETThread::finishedLoadingSemaphore.release();
+	IETThread::finishedResourcesSem.release();
 
 	delete this;
 }

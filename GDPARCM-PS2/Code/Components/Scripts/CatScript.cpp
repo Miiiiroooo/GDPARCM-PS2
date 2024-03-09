@@ -8,6 +8,7 @@ CatScript::CatScript(sf::FloatRect area, AnimationController* animController, Co
 
 	currentDelayTime = GetRandomDelay();
 	elapsedTime = 0.f;
+	isOnSceneTransition = false;
 	currentState = ECatStates::Delayed; 
 	travelSpeed = sf::Vector2f(0.f, 0.f);
 
@@ -25,6 +26,19 @@ void CatScript::SetMouse(AGameObject* mouse)
 {
 	this->mouse = mouse;
 }
+
+void CatScript::OnSceneTransition()
+{
+	isOnSceneTransition = true;
+	currentState = ECatStates::Delayed;
+}
+
+//void CatScript::OnSceneTransitionPounce()
+//{
+//	elapsedTime = 0;
+//	currentState = ECatStates::Ready; 
+//	animController->SetTrigger("isPouncing"); 
+//}
 
 void CatScript::Perform()
 {
@@ -51,6 +65,11 @@ float CatScript::GetRandomDelay()
 
 void CatScript::OnDelay()
 {
+	if (isOnSceneTransition)
+	{
+		return;
+	}
+
 	elapsedTime += deltaTime.asSeconds(); 
 
 	if (currentDelayTime < 0) 
@@ -77,19 +96,12 @@ void CatScript::OnReady()
 		currentState = ECatStates::Pouncing;
 		catMeowAudio->play();
 
-		sf::Vector2f mousePos = mouse->GetGlobalPosition(); 
+		sf::Vector2f mousePos = mouse->GetGlobalPosition();
 		sf::Vector2f catPos = owner->GetGlobalPosition(); 
-		sf::Vector2f dirToMouse = mousePos - catPos; 
-		dirToMouse *= 1.75f; 
+		sf::Vector2f direction = isOnSceneTransition ? (catPos - mousePos) * 30.f : (mousePos - catPos) * 1.75f;
 
-		float xSpeed = dirToMouse.x / POUNCE_TRAVEL_TIME; 
-		float ySpeed = dirToMouse.y / POUNCE_TRAVEL_TIME; 
-
-		// hard mode
-		/*float multiplier = 1.5f + std::log(playableArea.width / std::abs(dirToMouse.x));
-		xSpeed *= multiplier;
-		multiplier = 1.5f + std::log(playableArea.height / std::abs(dirToMouse.y));
-		ySpeed *= multiplier;*/
+		float xSpeed = direction.x / POUNCE_TRAVEL_TIME; 
+		float ySpeed = direction.y / POUNCE_TRAVEL_TIME; 
 
 		travelSpeed = sf::Vector2f(xSpeed, ySpeed); 
 		travelSpeed *= deltaTime.asSeconds(); 
@@ -127,40 +139,44 @@ void CatScript::HandleMovement()
 	}
 
 	sf::Vector2f catPos = owner->GetGlobalPosition(); 
-	sf::FloatRect spriteRect = owner->GetSprite()->getGlobalBounds(); 
-	  
-	float rightLimit = playableArea.left + playableArea.width; 
-	float rightDiff = rightLimit - (catPos.x + spriteRect.width / 2 + travelSpeed.x);
-	if (rightDiff < 0)
+
+	if (!isOnSceneTransition) 
 	{
-		//travelSpeed.x += rightDiff;
-		travelSpeed.x *= -1;
+		sf::FloatRect spriteRect = owner->GetSprite()->getGlobalBounds(); 
+
+		float rightLimit = playableArea.left + playableArea.width; 
+		float rightDiff = rightLimit - (catPos.x + spriteRect.width / 2 + travelSpeed.x); 
+		if (rightDiff < 0) 
+		{
+			//travelSpeed.x += rightDiff;
+			travelSpeed.x *= -1; 
+		}
+
+		float leftLimit = playableArea.left; 
+		float leftDiff = (catPos.x - spriteRect.width / 2 + travelSpeed.x) - leftLimit; 
+		if (leftDiff < 0)
+		{
+			//travelSpeed.x -= leftDiff;
+			travelSpeed.x *= -1; 
+		}
+
+		float lowerLimit = playableArea.top + playableArea.height; 
+		float lowerDiff = lowerLimit - (catPos.y + spriteRect.height / 2 + travelSpeed.y); 
+		if (lowerDiff < 0) 
+		{
+			//travelSpeed.y += lowerDiff;
+			travelSpeed.y *= -1; 
+		}
+
+		float upperLimit = playableArea.top; 
+		float upperDiff = (catPos.y - spriteRect.height / 2 + travelSpeed.y) - upperLimit; 
+		if (upperDiff < 0) 
+		{
+			//travelSpeed.y -= upperDiff;
+			travelSpeed.y *= -1; 
+		}
 	}
 
-	float leftLimit = playableArea.left;
-	float leftDiff = (catPos.x - spriteRect.width / 2 + travelSpeed.x) - leftLimit;
-	if (leftDiff < 0)
-	{
-		//travelSpeed.x -= leftDiff;
-		travelSpeed.x *= -1;
-	}
-
-	float lowerLimit = playableArea.top + playableArea.height;
-	float lowerDiff = lowerLimit - (catPos.y + spriteRect.height / 2 + travelSpeed.y);
-	if (lowerDiff < 0)
-	{
-		//travelSpeed.y += lowerDiff;
-		travelSpeed.y *= -1;
-	}
-
-	float upperLimit = playableArea.top;
-	float upperDiff = (catPos.y - spriteRect.height / 2 + travelSpeed.y) - upperLimit;
-	if (upperDiff < 0)
-	{
-		//travelSpeed.y -= upperDiff;
-		travelSpeed.y *= -1;
-	}
-
-	sf::Vector2f newPos = catPos + travelSpeed;
+	sf::Vector2f newPos = catPos + travelSpeed; 
 	owner->SetGlobalPosition(newPos.x, newPos.y);
 }

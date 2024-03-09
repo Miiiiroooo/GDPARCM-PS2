@@ -1,8 +1,9 @@
 #pragma once
-#include "AScene.h"
+#include "ToBeLoadedScene.h"
 #include "IFinishedSceneTransitionListener.h"
+#include "../Screens/FinalScreen.h"
 
-class FinalScene : public AScene, public IFinishedSceneTransitionListener
+class FinalScene : public ToBeLoadedScene, public IFinishedSceneTransitionListener
 {
 public:
 	FinalScene();
@@ -11,15 +12,23 @@ public:
 	void OnLoadResources() override;
 	void OnLoadObjects() override;
 	void OnUnloadResources() override;
-	void OnFinishedSceneTransition() override;
 
-	void OnFinishedLoading();
+	void OnFinishedSceneTransition() override;
+	void OnFinishedLoadingResources() override;
+	void OnFinishedLoadingObjects() override;
+	void AssignLoadingScene(LoadingScene* loadingScene) override;
 
 
 private:
 	const std::string STREAMED_ASSETS_DATA_DIR = "Media/StreamedAssetsData.txt";
-	const int MAX_WORKERS_FOR_LOADING = 3;
-	int numFinished;
+	int maxAssets;
+	int intervals;
+	int maxDigits;
+	std::string baseName;
+	std::string steamedAudioDirectory;
 
-	AGameObject* screen;
+	int numFinishedResources;
+	int numFinishedObjects;
+
+	FinalScreen* screen;
 };

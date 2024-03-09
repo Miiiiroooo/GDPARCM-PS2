@@ -8,10 +8,7 @@
 #include "Managers/SceneManager.h"
 #include "Scenes/FinalScene.h"
 #include "Physics/PhysicsManager.h"
-
-#include "Managers/GameObjectManager.h"
-#include "Screens/InteractiveLoadingScreen.h"
-#include "GameObjects/Temp.h"
+#include <iostream>
 
 
 const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.0f / FRAME_RATE);
@@ -54,12 +51,8 @@ void Game::Initialize()
 	FontManager::GetInstance()->LoadAll();
 	ScoreManager::GetInstance()->Initialize();
 
-	//SceneManager::GetInstance()->RegisterScene(new FinalScene()); 
-	//SceneManager::GetInstance()->LoadScene(SceneManager::FINAL_SCENE_NAME);
-
-
-	InteractiveLoadingScreen* screen = new InteractiveLoadingScreen();
-	GameObjectManager::GetInstance()->AddObject(screen);
+	SceneManager::GetInstance()->RegisterScene(new FinalScene()); 
+	SceneManager::GetInstance()->LoadScene(SceneManager::FINAL_SCENE_NAME);
 }
 
 // public methods of the Game Class
@@ -87,6 +80,8 @@ void Game::Run()
 		Render();
 		SceneManager::GetInstance()->CheckSceneToLoad();
 	}
+
+	ThreadPoolScheduler::GetInstance()->StopScheduler();
 }
 
 int Game::GetFPS()

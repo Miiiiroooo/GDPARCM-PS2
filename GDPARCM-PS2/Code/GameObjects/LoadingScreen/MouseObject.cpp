@@ -4,7 +4,6 @@
 #include "../../Components/Animation/AnimationController.h"
 #include "../../Components/Input/MouseController.h"
 #include "../../Components/Scripts/HitBehaviorScript.h"
-#include "../../Components/Scripts/MouseScript.h"
 #include "../../Physics/PhysicsManager.h"
 
 MouseObject::MouseObject(sf::FloatRect area) : AGameObject("MousePlayer"), playableArea(area)
@@ -39,6 +38,11 @@ void MouseObject::Initialize()
 	HitBehaviorScript* hitScript = new HitBehaviorScript("MouseHitScript", renderer, mouseCollider);
 	this->AttachComponent(hitScript);
 
-	MouseScript* script = new MouseScript(playableArea, inputController, animController, mouseCollider, hitScript);
+	script = new MouseScript(playableArea, inputController, animController, mouseCollider, hitScript);
 	this->AttachComponent(script);   
+}
+
+MouseScript* MouseObject::GetScript()
+{
+	return script;
 }

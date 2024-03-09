@@ -12,6 +12,8 @@ public:
 	~CatScript();
 
 	void SetMouse(AGameObject* mouse);
+	void OnSceneTransition();
+	//void OnSceneTransitionPounce();
 	void Perform() override;
 
 private:
@@ -34,10 +36,11 @@ private:
 	const float POUNCE_TRAVEL_TIME = 1.05f;
 	const float TIME_FRAME_TO_POUNCE = 0.7329f;
 	const float MIN_DELAY = 0.65f;
-	const float MAX_DELAY = 2.15f;
+	const float MAX_DELAY = 1.85f;
 
 	float currentDelayTime;
 	float elapsedTime;
+	bool isOnSceneTransition;
 	ECatStates currentState;
 	sf::Vector2f travelSpeed;
 };

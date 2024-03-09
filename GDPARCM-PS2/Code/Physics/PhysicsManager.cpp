@@ -46,6 +46,11 @@ void PhysicsManager::PhysicsUpdate(float dt)
 	{
 		for (size_t j = 0; j < this->trackedObjects.size(); j++)
 		{
+			if (i >= trackedObjects.size() || j >= trackedObjects.size())
+			{
+				continue;
+			}
+
 			Collider* colA = this->trackedObjects[i];
 			Collider* colB = this->trackedObjects[j];
 			AGameObject* parentA = colA->GetOwner();

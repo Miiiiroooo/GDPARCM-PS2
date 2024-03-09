@@ -1,10 +1,11 @@
 #include "IrisFadeBehaviorScript.h"
+#include "../../GameObjects/LoadingScreen/IrisFadeObject.h"
 #include "../../GameObjects/AGameObject.h"
 #include "../../Game.h"
 #include <iostream>
 
 
-IrisFadeBehaviorScript::IrisFadeBehaviorScript() : AComponent("IrisFadeBehaviorScript", EComponentTypes::Script)
+IrisFadeBehaviorScript::IrisFadeBehaviorScript(float mouseX) : AComponent("IrisFadeBehaviorScript", EComponentTypes::Script), mouseX(mouseX)
 {
 	currentState = EIrisStates::Unknown;
 	elapsedFadeOutTime = 0;
@@ -19,9 +20,9 @@ IrisFadeBehaviorScript::~IrisFadeBehaviorScript()
 
 void IrisFadeBehaviorScript::Initialize()
 {
-	float width = Game::WINDOW_WIDTH;
-	float height = Game::WINDOW_HEIGHT;
-	float radius = Game::WINDOW_WIDTH / 2 + 100;
+	float width = Game::WINDOW_WIDTH * 2.5;
+	float height = Game::WINDOW_HEIGHT * 2.5;
+	float radius = (Game::WINDOW_WIDTH / 2) + std::abs(Game::WINDOW_WIDTH / 2 - mouseX) + 100;
 
 	irisBackground = sf::RectangleShape(sf::Vector2f(width, height));
 	irisBackground.setOrigin(width / 2, height / 2);
@@ -133,6 +134,12 @@ void IrisFadeBehaviorScript::OnSecondHalf()
 
 	if (elapsedFadeOutTime > FADE_OUT_DURATION) 
 	{
+		IrisFadeObject* obj = (IrisFadeObject*)owner;
+		if (!obj->IsFinishedTransitioning())
+		{
+			obj->OnFinishedTransition();
+		}
+
 		return;
 	}
 

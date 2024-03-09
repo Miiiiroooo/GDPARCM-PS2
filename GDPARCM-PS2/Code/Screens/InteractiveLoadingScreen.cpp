@@ -2,18 +2,15 @@
 #include "../Game.h"
 #include "../GameObjects/FPSCounter.h"
 #include "../GameObjects/EmptyGameObject.h"
-#include "../GameObjects/LoadingScreen/MouseObject.h"
 #include "../GameObjects/LoadingScreen/PlayableArea.h"
+#include "../GameObjects/LoadingScreen/MouseObject.h"
 #include "../GameObjects/LoadingScreen/IrisFadeObject.h"
 #include "../Components/Scripts/CheeseSpawnerScript.h"
 #include "../Components/Scripts/CatSpawnerScript.h"
-#include "../Components/Scripts/InteractiveLoadingChecker.h"
-
-#include "../GameObjects/LoadingScreen/IrisFadeObject.h"
 
 InteractiveLoadingScreen::InteractiveLoadingScreen() : AGameObject("InteractiveLoadingScreen")
 {
-
+	manager = NULL;
 }
 
 InteractiveLoadingScreen::~InteractiveLoadingScreen()
@@ -29,33 +26,37 @@ void InteractiveLoadingScreen::Initialize()
 	PlayableArea* area = new PlayableArea(rect);
 	this->AttachChild(area);
 
+	MouseObject* mouse = new MouseObject(rect); 
+	this->AttachChild(mouse); 
+
 	EmptyGameObject* cheeseSpawner = new EmptyGameObject("CheeseSpawner");
 	this->AttachChild(cheeseSpawner);
 
 	CheeseSpawnerScript* cheeseSpawnerScript = new CheeseSpawnerScript(5, rect);
 	cheeseSpawner->AttachComponent(cheeseSpawnerScript);
-
-	MouseObject* mouse = new MouseObject(rect);
-	this->AttachChild(mouse);
+	cheeseSpawnerScript->InitializeSpawner(); 
 
 	EmptyGameObject* catSpawner = new EmptyGameObject("CatSpawner");
 	this->AttachChild(catSpawner);
 
-	CatSpawnerScript* catSpawnerScript = new CatSpawnerScript(7, rect, mouse);
+	CatSpawnerScript* catSpawnerScript = new CatSpawnerScript(7);
 	catSpawner->AttachComponent(catSpawnerScript);
+	catSpawnerScript->InitializeSpawner(mouse, rect); 
 
 	// initialize UI objects
 	FPSCounter* fpsCounter = new FPSCounter();
 	this->AttachChild(fpsCounter);
 
 	LoadingScreenUI* loadingScreenUI = new LoadingScreenUI();
-	this->AttachChild(loadingScreenUI);
+	this->AttachChild(loadingScreenUI); 
 
 	// attach loading screen logic 
-	InteractiveLoadingChecker* script = new InteractiveLoadingChecker(loadingScreenUI);
-	this->AttachComponent(script); 
+	manager = new LoadingScreenManager(); 
+	manager->SetComponents(loadingScreenUI, mouse->GetScript(), catSpawnerScript, cheeseSpawnerScript);
+	this->AttachComponent(manager); 
+}
 
-
-	IrisFadeObject* iris = new IrisFadeObject(mouse);
-	this->AttachChild(iris);
+LoadingScreenManager* InteractiveLoadingScreen::GetManager()
+{
+	return manager;
 }

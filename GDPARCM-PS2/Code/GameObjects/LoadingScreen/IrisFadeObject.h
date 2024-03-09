@@ -8,9 +8,12 @@ public:
 	~IrisFadeObject();
 
 	void Initialize() override;
+	void OnFinishedTransition();
+	bool IsFinishedTransitioning();
 
 
 private:
 	sf::Texture* irisTexture;
 	AGameObject* mouse;
+	bool isFinishedTransitioning;
 };

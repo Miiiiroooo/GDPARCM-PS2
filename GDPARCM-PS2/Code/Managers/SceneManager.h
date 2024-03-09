@@ -2,6 +2,7 @@
 #include <unordered_map> 
 #include "../Scenes/AScene.h"
 #include "../Scenes/LoadingScene.h"
+#include "../Scenes/ToBeLoadedScene.h"
 
 typedef std::unordered_map<std::string, AScene*> SceneTable;
 typedef std::vector<std::string> SceneList;
@@ -32,10 +33,10 @@ private:
 
 	bool doesSceneNeedToBeLoaded = false;
 	std::string toLoadSceneName;
-	AScene* toLoadScene;
+	ToBeLoadedScene* toBeLoadedScene;
 
-	SceneTable storedScenes;
+	SceneTable storedScenesTable;
 	AScene* activeScene;
-	AScene* loadingScene;
+	LoadingScene* loadingScene;
 };
 

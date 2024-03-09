@@ -16,16 +16,6 @@ GameObjectPool::~GameObjectPool()
 	delete this->objectCopy;
 	this->objectCopy = NULL;
 	this->parent = NULL;
-
-	for (size_t i = 0; i < availableObjects.size(); i++)
-	{
-		delete availableObjects[i];
-	}
-
-	for (size_t i = 0; i < usedObjects.size(); i++)
-	{
-		delete usedObjects[i];
-	}
 }
 
 

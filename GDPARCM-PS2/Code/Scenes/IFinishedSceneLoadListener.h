@@ -1,11 +1,11 @@
 #pragma once
 
-class IFinishedSceneTransitionListener
+class IFinishedSceneLoadListener
 {
 public:
 	virtual void OnFinishedSceneLoad() = 0;
 
 
 protected:
-	IFinishedSceneTransitionListener() {};
+	IFinishedSceneLoadListener() {};
 };

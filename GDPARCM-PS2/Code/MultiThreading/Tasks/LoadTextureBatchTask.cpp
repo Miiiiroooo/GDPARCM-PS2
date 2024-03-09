@@ -11,7 +11,7 @@ LoadTextureBatchTask::LoadTextureBatchTask(int startingIndex, int max, int multi
 
 LoadTextureBatchTask::~LoadTextureBatchTask()
 {
-
+	scene = NULL;
 }
 
 void LoadTextureBatchTask::ExecuteTask()
@@ -23,22 +23,24 @@ void LoadTextureBatchTask::ExecuteTask()
 		int aseetNum = i * multiplier + 1;
 		std::string num_string = std::to_string(aseetNum);
 		int numDigits = num_string.length();
-		num_string.insert(0, maxDigits - numDigits, '0');
+		num_string.insert(0, (size_t)maxDigits - numDigits, '0'); 
 		std::string key = baseName + num_string;
 
+		IETThread::textureManagerSem.acquire();
 		TextureManager::GetInstance()->LoadStreamedAssets(key);
+		IETThread::textureManagerSem.release();
 	}
 
-	IETThread::finishedLoadingSemaphore.acquire();
+	IETThread::finishedResourcesSem.acquire();
 	if (scene != NULL)
 	{
-		scene->OnFinishedLoading();
+		scene->OnFinishedLoadingResources();
 	}
 	else
 	{
 		std::cout << "Finished loading assets, but cannot report to scene\n";
 	}
-	IETThread::finishedLoadingSemaphore.release();
+	IETThread::finishedResourcesSem.release();
 
 	delete this;
 }

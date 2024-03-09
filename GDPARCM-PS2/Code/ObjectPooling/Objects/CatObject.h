@@ -2,6 +2,7 @@
 #include "../APoolable.h"
 #include "../../Physics/Collider.h"
 #include "../../Components/Scripts/CatSpawnerScript.h"
+#include "../../Components/Scripts/CatScript.h"
 
 class CatObject : public APoolable
 {
@@ -13,7 +14,9 @@ public:
 	void OnActivate() override;
 	void OnRelease() override;
 	APoolable* Clone() override;
+
 	void RandomSpawn();
+	CatScript* GetScript();
 
 
 private:
@@ -23,6 +26,7 @@ private:
 	int id;
 	AGameObject* mouse;
 	Collider* catCollider;
+	CatScript* script;
 	sf::FloatRect playableArea;
 };
 

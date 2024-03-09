@@ -1,5 +1,5 @@
 #include "ApplicationManager.h"
-
+#include <iostream>
 
 // static declarations of the ApplicationManager Class
 ApplicationManager* ApplicationManager::sharedInstance = NULL;
@@ -28,7 +28,7 @@ void ApplicationManager::ApplicationQuit()
 
 void ApplicationManager::UpdateGameState(EGameStates newState)
 {
-	state = newState;;
+	state = newState;
 }
 
 EGameStates ApplicationManager::GetCurrentGameState()

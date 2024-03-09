@@ -17,8 +17,9 @@ ScoreManager* ScoreManager::GetInstance()
 void ScoreManager::Initialize()
 {
 	cheeseScore = 0;
+	bestCheeseScore = 0;
 
-	std::string fileContent;
+	/*std::string fileContent;
 	std::ifstream inFile;
 	inFile.open("Media/ScoreFile.txt");
 
@@ -38,7 +39,7 @@ void ScoreManager::Initialize()
 		}
 	}
 
-	inFile.close();
+	inFile.close();*/
 }
 
 void ScoreManager::ResetLoadingScreenScore()

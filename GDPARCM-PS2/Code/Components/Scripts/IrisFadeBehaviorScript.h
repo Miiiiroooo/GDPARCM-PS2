@@ -5,7 +5,7 @@
 class IrisFadeBehaviorScript : public AComponent
 {
 public:
-	IrisFadeBehaviorScript();
+	IrisFadeBehaviorScript(float mouseX);
 	~IrisFadeBehaviorScript();
 	
 	void Initialize();
@@ -24,6 +24,7 @@ private:
 	sf::CircleShape irisCircle;
 	sf::RenderTexture renderTexture;
 	bool hasRenderTextureFailed;
+	float mouseX;
 
 	const float FADE_OUT_DURATION = 4.8f;
 	const float STOP_DURATION = 1.2f;

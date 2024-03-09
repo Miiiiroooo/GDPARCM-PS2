@@ -17,9 +17,10 @@ public:
 	int GetCheeseScore();
 	int GetBestCheeseScore();
 
+	void UpdateScoreFile();
+
 private:
 	ScoreManager() {};
-	void UpdateScoreFile();
 
 
 private:

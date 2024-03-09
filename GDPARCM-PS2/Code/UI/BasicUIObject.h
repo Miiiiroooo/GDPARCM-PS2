@@ -5,6 +5,7 @@
 class BasicUIObject : public AGameObject
 {
 public:
+	BasicUIObject(std::string name);
 	BasicUIObject(std::string name, std::string textureKey, float scaleValue);
 	~BasicUIObject();
 

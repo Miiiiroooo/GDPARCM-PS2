@@ -5,6 +5,10 @@
 LoadingScreenUI::LoadingScreenUI() : AGameObject("LoadingScreenUI")
 {
 	tag = EObjectTags::UI;
+
+	bestCheeseScoreText = NULL;
+	cheeseScoreText = NULL;
+	loadingText = NULL;
 }
 
 LoadingScreenUI::~LoadingScreenUI()

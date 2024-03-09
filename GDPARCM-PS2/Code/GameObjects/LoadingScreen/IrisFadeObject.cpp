@@ -16,7 +16,7 @@ IrisFadeObject::~IrisFadeObject()
 
 void IrisFadeObject::Initialize()
 {
-	IrisFadeBehaviorScript* script = new IrisFadeBehaviorScript();
+	IrisFadeBehaviorScript* script = new IrisFadeBehaviorScript(mouse->GetGlobalPosition().x);
 	this->AttachComponent(script); 
 	script->Initialize();
 	script->OnFadeOut(); 
@@ -26,4 +26,14 @@ void IrisFadeObject::Initialize()
 	this->AttachComponent(renderer); 
 
 	this->SetGlobalPosition(mouse->GetGlobalPosition().x, mouse->GetGlobalPosition().y); 
+}
+
+void IrisFadeObject::OnFinishedTransition()
+{
+	isFinishedTransitioning = true;
+}
+
+bool IrisFadeObject::IsFinishedTransitioning()
+{
+	return isFinishedTransitioning;
 }

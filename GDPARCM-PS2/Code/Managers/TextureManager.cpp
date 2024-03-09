@@ -86,7 +86,7 @@ void TextureManager::LoadAllLoadingScreenAssets()
 
 void TextureManager::LoadStreamedAssets(std::string key)
 {
-	std::string path = STREAMING_PATH + key + ".png";
+	std::string path = STREAMING_PATH + key + ".jpg";
 	LoadTexture(key, path, true);
 }
 

@@ -6,7 +6,7 @@
 class LoadAudioTask : public AWorkerTask
 {
 public:
-	LoadAudioTask();
+	LoadAudioTask(std::string steamedAudioDirectory);
 	~LoadAudioTask();
 
 	void ExecuteTask() override;
@@ -14,7 +14,6 @@ public:
 
 
 private:
-	const std::string STREAMED_AUDIO_DIRECTORY = "Media/StreamedAssets/TomAndJerry.mp3";
-
 	FinalScene* scene;
+	std::string steamedAudioDirectory;
 };

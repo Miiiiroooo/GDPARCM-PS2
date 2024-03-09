@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "ApplicationManager.h"
+#include <iostream>
 
 // static declarations of the SceneManager Class
 std::string SceneManager::FINAL_SCENE_NAME = "FinalScene";
@@ -17,12 +18,12 @@ SceneManager* SceneManager::GetInstance()
 // public methods of the SceneManager Class
 void SceneManager::RegisterScene(AScene* scene)
 {
-	storedScenes[scene->GetSceneName()] = scene;
+	storedScenesTable[scene->GetSceneName()] = scene;
 }
 
 void SceneManager::LoadScene(std::string sceneName)
 {
-	toLoadScene = NULL;
+	toBeLoadedScene = NULL;
 	toLoadSceneName = sceneName;
 	doesSceneNeedToBeLoaded = true;
 }
@@ -44,7 +45,7 @@ void SceneManager::CheckSceneToLoad()
 
 		doesSceneNeedToBeLoaded = false;
 
-		AScene* scene = storedScenes[toLoadSceneName];
+		AScene* scene = storedScenesTable[toLoadSceneName];
 		if (!scene->NeedsLoadingScreen())
 		{
 			activeScene = scene;  
@@ -55,9 +56,9 @@ void SceneManager::CheckSceneToLoad()
 		{
 			activeScene = NULL;
 
-			toLoadScene = scene;
-			toLoadScene->OnLoadResources();
-			toLoadScene->OnLoadObjects(); 
+			toBeLoadedScene = (ToBeLoadedScene*)scene;
+			toBeLoadedScene->OnLoadResources();
+			toBeLoadedScene->OnLoadObjects(); 
 
 			if (loadingScene == NULL)
 			{
@@ -66,17 +67,20 @@ void SceneManager::CheckSceneToLoad()
 			loadingScene->OnLoadResources();
 			loadingScene->OnLoadObjects(); 
 
+			toBeLoadedScene->AssignLoadingScene(loadingScene);
 			ApplicationManager::GetInstance()->UpdateGameState(EGameStates::Loading);
 		}
 	}
 
-	if (toLoadScene != NULL && toLoadScene->IsAlreadyLoaded())
+	if (toBeLoadedScene != NULL && toBeLoadedScene->IsAlreadyLoaded() && loadingScene->IsFinishedTransitioning())
 	{
 		loadingScene->OnUnloadObjects();
 		loadingScene->OnUnloadResources();
+		loadingScene->CleanupAfterLoading();
 
-		activeScene = toLoadScene;
-		toLoadScene = NULL;
+		activeScene = toBeLoadedScene;
+		toBeLoadedScene->CleanupAfterLoading();
+		toBeLoadedScene = NULL;
 
 		ApplicationManager::GetInstance()->UpdateGameState(EGameStates::Running);
 	}
